@@ -1,0 +1,612 @@
+import React, { useContext, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { UserAuthContext } from "@/context/UserAuthContext";
+import {
+  cartDelete,
+  createStripeCoupon,
+  createVoucher,
+  orderCreate,
+  productSearch,
+  productUpdate,
+  searchPromoCode,
+  searchVoucher,
+  sendEmail,
+  updatePromoCode,
+  updateVoucher,
+} from "@/services";
+import PageLoading from "@/pages/PageLoading";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+
+const PaymentSuccessPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { user } = useContext(UserAuthContext);
+  const orderProductDetails = localStorage.getItem("orderProductDetails");
+  const orderPricingDetails = localStorage.getItem("orderPricingDetails");
+  const orderPaymentData = JSON.parse(orderPricingDetails);
+  const orderProductData = JSON.parse(orderProductDetails);
+
+  useEffect(() => {
+    async function initialFunction() {
+      setIsLoading(true); // Start loading spinner
+      try {
+        const fromPayment = searchParams.get("fromPayment");
+        if (
+          !fromPayment ||
+          orderProductDetails === null ||
+          orderPricingDetails === null
+        ) {
+          navigate("/cart"); // Redirect if accessed manually
+          return;
+        }
+        if (user !== null) {
+          if (
+            orderProductData.length === 1 &&
+            orderProductData[0]?.productType === "Voucher"
+          ) {
+            const startDate = new Date();
+            const formattedVoucherStartDate = startDate.toLocaleString(
+              "en-US",
+              {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true,
+              }
+            );
+
+            const couponType = "fixed"; // or 'percentage'
+            const value = orderProductData[0]?.price;
+
+            const couponResponse = await createStripeCoupon({
+              code: orderProductData[0]?.code,
+              type: couponType,
+              value: value,
+              duration: "once",
+            });
+
+            if (couponResponse.success) {
+              const voucherCreateResponse = await createVoucher({
+                code: orderProductData[0]?.code,
+                VoucherValue: orderProductData[0]?.price,
+                isUsed: false,
+                startDate: formattedVoucherStartDate,
+                validityPeriod: "12 Month",
+              });
+
+              if (voucherCreateResponse.success) {
+                const emailContentToUser = `
+  <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+    <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold;">
+      Critters Territory
+    </div>
+    <div style="padding: 20px; text-align: center; line-height: 1.8; color: #555; font-size: 17px;">
+      <p>Hi ${user?.firstName},</p>
+      <p>Thank you for purchasing a gift voucher from <strong>Critters Territory</strong>! 🐾</p>
+      <p>Your payment has been successfully received. Below are the details of your voucher:</p>
+
+      <div style="margin: 20px auto; padding: 10px 20px; background-color: #f0f0f0; border-radius: 6px; display: inline-block; font-size: 18px; color: #000; text-align: left;">
+        Voucher Code: <strong>${orderProductData[0]?.code}</strong><br>
+        Voucher Value: <strong>$${Number(orderProductData[0]?.price).toFixed(2)}</strong><br>
+        Purchase Date: <strong>${formattedVoucherStartDate}</strong><br>
+        Valid for: <strong>12 Months</strong>
+      </div>
+
+      <p>If you have any questions or need assistance, feel free to contact us anytime.</p>
+      <p>Thanks again for supporting our small business!</p>
+    </div>
+    <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 10px; font-size: 16px;">
+      &copy; 2025 Critters Territory. All rights reserved.<br>
+      <a href="https://www.crittersterritory.com" style="color: #ffcc00; text-decoration: none;">Visit our website</a>
+    </div>
+  </div>
+`;
+
+                if (user !== null) {
+                  const sendVoucherToUserEmailResponse = await sendEmail({
+                    toName: `${user?.firstName} ${user?.firstName}`,
+                    toEmail: user?.email,
+                    subject: "Voucher Purchase Notice - Critters Territory",
+                    emailContent: emailContentToUser,
+                    replyToEmail: "crittersterritory@gmail.com",
+                    replyToName: "Critters Territory",
+                  });
+
+                  if (sendVoucherToUserEmailResponse.success) {
+                    const orderEmailDetails =
+                      localStorage.getItem("orderEmailDetails");
+
+                    if (orderEmailDetails !== null) {
+                      const orderEmailData = JSON.parse(orderEmailDetails);
+
+                      const emailContentToRecipient = `
+  <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+    <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold;">
+      Critters Territory
+    </div>
+    <div style="padding: 20px; text-align: center; line-height: 1.8; color: #555; font-size: 17px;">
+      <p>Hi ${orderEmailData[0].name},</p>
+      <p>You've received a special gift from <strong>${user?.firstName}</strong>! 🎉</p>
+      <p>They wanted to brighten your day with a gift voucher from <strong>Critters Territory</strong> 🐾</p>
+
+      <p style="font-style: italic; background-color: #fef6d8; padding: 15px; border-left: 4px solid #ffcc00; border-radius: 4px; margin: 20px auto;">
+        "${orderEmailData[0].message}"
+      </p>
+
+      <div style="margin: 20px auto; padding: 10px 20px; background-color: #f0f0f0; border-radius: 6px; display: inline-block; font-size: 18px; color: #000; text-align: left;">
+        Voucher Code: <strong>${orderProductData[0]?.code}</strong><br>
+        Voucher Value: <strong>$${Number(orderProductData[0]?.price).toFixed(2)}</strong><br>
+        Purchase Date: <strong>${formattedVoucherStartDate}</strong><br>
+        Valid for: <strong>12 Months</strong>
+      </div>
+
+      <p>Use this code at checkout on our website:</p>
+      <a href="https://www.crittersterritory.com" style="color: #ff6600; font-weight: bold; text-decoration: none;">www.crittersterritory.com</a>
+
+      <p>Thanks for being part of the Critters Territory community. We hope you love your new critters!</p>
+    </div>
+    <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 10px; font-size: 16px;">
+      &copy; 2025 Critters Territory. All rights reserved.<br>
+      <a href="https://www.crittersterritory.com" style="color: #ffcc00; text-decoration: none;">Visit our website</a>
+    </div>
+  </div>
+`;
+
+                      if (user !== null) {
+                        const sendVoucherToRecipientEmailResponse =
+                          await sendEmail({
+                            toName: `${orderEmailData[0].name}`,
+                            toEmail: orderEmailData[0].email,
+                            subject: "Gift Voucher - Critters Territory",
+                            emailContent: emailContentToRecipient,
+                            replyToEmail: "crittersterritory@gmail.com",
+                            replyToName: "Critters Territory",
+                          });
+
+                        if (sendVoucherToRecipientEmailResponse.success) {
+                          setIsLoading(false); // Stop loading
+                          toast.success(
+                            "We've emailed the gift to her/him !!",
+                            {
+                              position: "top-right",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: false,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "dark",
+                              transition: Bounce,
+                            }
+                          );
+                        } else {
+                          console.log(sendVoucherToRecipientEmailResponse);
+                        }
+                      }
+                    }
+
+                    // Send new gift voucher order notification email
+                    const emailContentToYouGiftVoucher = `
+  <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+    <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold;">
+      🎁 Gift Voucher Purchased
+    </div>
+    <div style="padding: 20px; text-align: center; font-size: 17px; color: #333;">
+      <p>Someone just purchased a <strong>gift voucher</strong> on <strong>Critters Territory</strong> 🐾</p>
+      <p>You can view the details and manage the voucher from your admin dashboard.</p>
+      <a href="https://www.crittersterritory.com/admin" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #ff6600; color: #fff; text-decoration: none; border-radius: 5px;">
+        Go to Dashboard
+      </a>
+    </div>
+    <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 10px; font-size: 16px;">
+      &copy; 2025 Critters Territory. All rights reserved.
+    </div>
+  </div>
+`;
+
+                    if (user !== null) {
+                      const sendPromoEmailResponse = await sendEmail({
+                        toName: `Minindu Dissanayake`,
+                        toEmail: "crittersterritory@gmail.com",
+                        subject: "New Order Noification - Critters Territory",
+                        emailContent: emailContentToYouGiftVoucher,
+                        replyToEmail: "crittersterritory@gmail.com",
+                        replyToName: "Critters Territory",
+                      });
+                    }
+
+                    localStorage.removeItem("orderEmailDetails");
+                    localStorage.removeItem("orderProductDetails");
+                    localStorage.removeItem("orderPricingDetails");
+                    setIsLoading(false); // Stop loading
+                    toast.success(
+                      "We've sent you an order confirmation email",
+                      {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Bounce,
+                      }
+                    );
+                    setTimeout(() => {
+                      navigate("/shop");
+                    }, 6000);
+                  }
+                }
+              }
+            }
+          } else {
+            // Order ID generator
+            function generateOrderId() {
+              const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+              let orderId = "";
+              for (let i = 0; i < 10; i++) {
+                orderId += chars.charAt(
+                  Math.floor(Math.random() * chars.length)
+                );
+              }
+              return orderId;
+            }
+
+            const orderId = generateOrderId();
+
+            const totalAmount =
+              Number(orderPaymentData[0].subtotal) +
+              Number(orderPaymentData[0].shipping) -
+              Number(orderPaymentData[0].discount);
+
+            // Create simplified order items list
+            const orderProductList = orderProductData.map(
+              ({ title, productImage, ...rest }) => rest
+            );
+
+            // 1. Create order in database //orders dekak creat wela,discount eka na,code eka na
+            const orderCreateResponse = await orderCreate({
+              orderId,
+              orderItems: orderProductList,
+              subtotal: orderPaymentData[0].subtotal,
+              discount: orderPaymentData[0].discount || null,
+              promocode_voucherCode:
+                orderPaymentData[0].promocode_voucherCode || null,
+              shipping: orderPaymentData[0].shipping || 0,
+              shippingType:
+                orderPaymentData[0].isStandardShippingChosen &&
+                orderPaymentData[0].shipping === 0
+                  ? "Instant Delivery"
+                  : orderPaymentData[0].isStandardShippingChosen
+                    ? "Standard Shipping"
+                    : "Expedited Shipping",
+              orderStatus:
+                orderProductList.length === 1 &&
+                orderProductList[0]?.productType === "Digital"
+                  ? "4"
+                  : "1",
+              userId: user?._id,
+            });
+
+            if (!orderCreateResponse.success) return;
+
+            // 2. Update stock
+            for (const orderProductItem of orderProductData) {
+              const productSearchResponse = await productSearch({
+                searchData: { _id: orderProductItem.productId },
+                pagination: {},
+              });
+
+              const product = productSearchResponse?.productList?.[0];
+              if (
+                productSearchResponse.success &&
+                product &&
+                product.stockTypeId === "1"
+              ) {
+                if (product.productType === "Digital") {
+                  await productUpdate({
+                    updateSelectData: { _id: orderProductItem.productId },
+                    updateData: {
+                      stock: product.stock - orderProductItem.quantity,
+                    },
+                  });
+                } else if (product.productType === "Physical") {
+                  const updatedVariations = product.variations.map(
+                    (variationItem) => {
+                      if (
+                        variationItem.combination === orderProductItem.variant
+                      ) {
+                        const newQty = (
+                          Number(variationItem.quantity) -
+                            orderProductItem.quantity || 0
+                        ).toString();
+                        return {
+                          ...variationItem,
+                          quantity: newQty,
+                          status: newQty === "0" ? 0 : variationItem.status,
+                        };
+                      }
+                      return variationItem;
+                    }
+                  );
+
+                  await productUpdate({
+                    updateSelectData: { _id: orderProductItem.productId },
+                    updateData: {
+                      variations: updatedVariations,
+                    },
+                  });
+                }
+              }
+              await productUpdate({
+                updateSelectData: { _id: orderProductItem.productId },
+                updateData: {
+                  totalSales:
+                    product.totalSales + (orderProductItem.quantity || 1),
+                },
+              });
+            }
+
+            // 3. Mark promo or voucher as used
+            const promoCode = orderPaymentData[0].promocode_voucherCode;
+
+            if (promoCode) {
+              const promoSearch = await searchPromoCode({
+                searchData: { code: promoCode, userEmail: user?.email },
+              });
+
+              if (promoSearch.success && promoSearch.promoCodeList.length > 0) {
+                await updatePromoCode({
+                  id: promoSearch.promoCodeList[0]._id,
+                  updateData: { isUsed: true },
+                });
+              } else {
+                const voucherSearch = await searchVoucher({
+                  searchData: { code: promoCode },
+                });
+
+                if (
+                  voucherSearch.success &&
+                  voucherSearch.voucherList.length > 0
+                ) {
+                  await updateVoucher({
+                    id: voucherSearch.voucherList[0]._id,
+                    updateData: { isUsed: true },
+                  });
+                }
+              }
+            }
+
+            // 4. Send confirmation email
+            const emailContent = `
+          <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold;">
+              Critters Territory
+            </div>
+            <div style="padding: 20px; text-align: center; line-height: 1.8; color: #555; font-size: 17px;">
+              <p>Hi there,</p>
+              <p>Thank you for your order! We're thrilled to have you as part of the Critters Territory family 🐾</p>
+              <p>Your payment has been received successfully. We're now getting your items ready for shipment.</p>
+              <div style="margin: 20px auto; padding: 10px 20px; background-color: #f0f0f0; border-radius: 6px; display: inline-block; font-size: 18px; color: #000;">
+                Order ID: <strong>${orderId}</strong><br>
+                Total: <strong>$${totalAmount.toFixed(2)}</strong>
+              </div>
+              <p>We’ll email you again once your order has shipped.</p>
+              <p>In the meantime, feel free to reach out if you have any questions.</p>
+              <p>Thanks again for supporting our small business!</p>
+            </div>
+            <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 10px; font-size: 16px;">
+              &copy; 2025 Critters Territory. All rights reserved.<br>
+              <a href="https://www.crittersterritory.com" style="color: #ffcc00; text-decoration: none;">Visit our website</a>
+            </div>
+          </div>`;
+            if (user !== null) {
+              const sendPromoEmailResponse = await sendEmail({
+                toName: `${user?.firstName} ${user?.firstName}`,
+                toEmail: user?.email,
+                subject: "Payment Accepted - Critters Territory",
+                emailContent,
+                replyToEmail: "crittersterritory@gmail.com",
+                replyToName: "Critters Territory",
+              });
+            }
+
+            // 5.Send designs via email
+            let downloadLinks = [];
+
+            for (const orderProductItem of orderProductData) {
+              if (orderProductItem.productType === "Digital") {
+                let url = "";
+
+                const productSearchResponse = await productSearch({
+                  searchData: { _id: orderProductItem.productId },
+                  pagination: {},
+                });
+
+                if (productSearchResponse.success) {
+                  url = productSearchResponse.productList[0]?.sharableLink;
+                }
+
+                downloadLinks.push({
+                  name: orderProductItem.title,
+                  url: url,
+                });
+              }
+            }
+
+            let downloadLinksEmailContent = null;
+
+            if (downloadLinks.length > 0) {
+              downloadLinksEmailContent = `
+              <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); overflow: hidden; font-family: sans-serif;">
+                <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 24px; font-size: 26px; font-weight: bold;">
+                  Your Downloads Are Ready 🎉
+                </div>
+                <div style="padding: 24px; text-align: center; font-size: 17px; color: #444;">
+                  <p>Thank you for your purchase! Your digital goodies are just a click away 👇</p>
+                  <ul style="list-style: none; padding: 0; margin: 30px 0;">
+                    ${downloadLinks
+                      .map(
+                        (item) => `
+                        <li style="margin-bottom: 14px;">
+                          <a href="${item.url}" style="color: #007bff; text-decoration: none; font-weight: bold;" download>
+                            🔗 Download ${item.name}
+                          </a>
+                        </li>`
+                      )
+                      .join("")}
+                  </ul>
+                  <p style="margin-top: 30px;">Enjoy your downloads! 🐾</p>
+                </div>
+                <div style="background-color: #333; color: #fff; text-align: center; padding: 16px; font-size: 15px;">
+                  &copy; 2025 Critters Territory<br>
+                  <a href="https://www.crittersterritory.com" style="color: #ffcc00; text-decoration: none;">Visit our website</a>
+                </div>
+              </div>`;
+            }
+
+            if (user && downloadLinksEmailContent) {
+              await sendEmail({
+                toName: `${user?.firstName} ${user?.lastName ?? ""}`,
+                toEmail: user.email,
+                subject: "Your Digital Downloads - Critters Territory",
+                emailContent: downloadLinksEmailContent,
+                replyToEmail: "crittersterritory@gmail.com",
+                replyToName: "Critters Territory",
+              });
+            }
+
+            // 6.Send new order notification email
+            const emailContentToYou = `
+  <div style="max-width: 600px; margin: 20px auto; background-color: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
+    <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 20px 10px; font-size: 24px; font-weight: bold;">
+      🎉 New Order Received
+    </div>
+    <div style="padding: 20px; text-align: center; font-size: 17px; color: #333;">
+      <p>You just received a new order on <strong>Critters Territory</strong> 🐾</p>
+      <p>Log in to your dashboard to view and fulfill the order.</p>
+      <a href="https://www.crittersterritory.com/admin" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #ff6600; color: #fff; text-decoration: none; border-radius: 5px;">
+        Go to Dashboard
+      </a>
+    </div>
+    <div style="background-color: #333; color: #fff; text-align: center; padding: 15px 10px; font-size: 16px;">
+      &copy; 2025 Critters Territory. All rights reserved.
+    </div>
+  </div>
+`;
+
+            if (user !== null) {
+              const sendPromoEmailResponse = await sendEmail({
+                toName: `Minindu Dissanayake`,
+                toEmail: "crittersterritory@gmail.com",
+                subject: "New Order Noification - Critters Territory",
+                emailContent: emailContentToYou,
+                replyToEmail: "crittersterritory@gmail.com",
+                replyToName: "Critters Territory",
+              });
+            }
+
+            // 7. Clear cart
+            const cartDeleteResponse = await cartDelete({
+              deleteData: { userId: user?._id },
+            });
+
+            if (cartDeleteResponse?.success) {
+              localStorage.removeItem("cartData");
+              localStorage.removeItem("orderProductDetails");
+              localStorage.removeItem("orderPricingDetails");
+              setIsLoading(false); // Stop loading
+              toast.success("We've sent you an order confirmation email", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+              });
+              downloadLinks.length > 0
+                ? toast.success(
+                    "Your download links have been emailed to you. Enjoy! 🎉",
+                    {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: false,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "dark",
+                      transition: Bounce,
+                    }
+                  )
+                : null;
+              setTimeout(() => {
+                navigate("/user-profile/my-orders");
+              }, 6000);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error processing order:", error);
+      } finally {
+        setIsLoading(false); // Stop loading
+      }
+    }
+    initialFunction();
+  }, [searchParams, navigate, user]);
+
+  return isLoading ? (
+    <PageLoading />
+  ) : (
+    <div className="px-4 md:w-8/12 w-full sm:w-10/12 lg:w-6/12 2xl:w-4/12 mx-auto">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Bounce}
+      />
+      <div className="flex justify-center w-full rounded-md bg-white mt-10 mb-20 bg-opacity-15">
+        <div className="w-full">
+          <div className="shadow-xl p-10 text-center mt-10 border-b-4 border-green-500">
+            <svg
+              className="w-[55px] h-[55px] text-green-500 mx-auto"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <h2 className="text-[40px] text-white font-medium mt-3 mb-3">
+              Your payment was successful
+            </h2>
+            <p className="text-[18px] text-gray-300 font-medium mb-10">
+              Thank you for your payment. We will <br />
+              be in contact with more details shortly
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PaymentSuccessPage;

@@ -1,0 +1,27 @@
+import { callUserAuthApi } from "@/services";
+import { createContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+export const UserAuthContext = createContext(null);
+function UserAuthContextProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    const verifyUserCookie = async () => {
+      const data = await callUserAuthApi();
+      
+      if (data?.userInfo) {
+        setUser(data?.userInfo);
+      }
+      return data?.success ? navigate(location.pathname === '/auth/login'|| location.pathname === '/auth/register' || location.pathname==='/'?'/':`${location.pathname}`) : navigate(location.pathname==='/user-profile/my-profile'||location.pathname==='/user-profile/my-orders'||location.pathname==='/user-profile/settings'?'/':`${location.pathname}`);
+    };
+
+    verifyUserCookie();
+    
+  }, [navigate, location.pathname]);
+
+  return <UserAuthContext.Provider value={{user,setUser}}>{children}</UserAuthContext.Provider>;
+}
+
+export default UserAuthContextProvider;

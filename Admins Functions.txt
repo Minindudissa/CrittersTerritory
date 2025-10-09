@@ -1,0 +1,149 @@
+import { AdminAuthContext } from "@/context/AdminAuthContext";
+import PageLoading from "@/pages/PageLoading";
+import {
+  countrySearch,
+  genderSearch,
+  searchAddress,
+  searchAdmin,
+  UpdateAdmin,
+} from "@/services";
+import { useContext, useEffect, useState } from "react";
+
+function Admins() {
+  const { admin } = useContext(AdminAuthContext);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setsearchTerm] = useState("");
+  const [allAdminsList, setAllAdminsList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [totalPages, setTotalPages] = useState(1);
+  const [openAccordion, setOpenAccordion] = useState(null); // Track the open accordion ID
+  const [addressData, setAddressData] = useState(null);
+  const [countryData, setCountryData] = useState([]);
+  const [genderData, setGenderData] = useState([]);
+
+  useEffect(() => {
+    // console.log(admin);
+    if (searchTerm === "") {
+      searchAllAdmins({
+        searchData: {},
+        pagination: { page: currentPage, limit: limit },
+      });
+    } else {
+      searchAllAdmins({
+        searchData: { email: { $regex: searchTerm, $options: "i" } },
+        pagination: { page: currentPage, limit: limit },
+      });
+    }
+  }, [currentPage, limit, searchTerm]);
+
+  async function searchAllAdmins(searchData, pagination) {
+    const searchAllAdminsResponse = await searchAdmin(searchData, pagination);
+    setIsLoading(!searchAllAdminsResponse);
+
+    if (searchAllAdminsResponse?.success) {
+      setAllAdminsList(searchAllAdminsResponse?.adminData);
+      setCurrentPage(searchAllAdminsResponse?.currentPage);
+      setTotalPages(searchAllAdminsResponse?.totalPages);
+    }
+  }
+
+  const toggleAccordion = (id, genderId) => {
+    if (openAccordion === id) {
+      // Close the currently open accordion
+      setOpenAccordion(null);
+      setAddressData(null);
+      setCountryData(null);
+      setGenderData(null);
+    } else {
+      // Open the clicked accordion
+      setOpenAccordion(id);
+      adminAddressDetails(id);
+      if (genderId === "" || genderId === "0") {
+        setGenderData(null);
+      } else {
+        adminGenderDetails(genderId);
+      }
+    }
+  };
+
+  const adminAddressDetails = async (id) => {
+    const searchAddressResponse = await searchAddress({ userId: id });
+    if (searchAddressResponse?.success) {
+      setAddressData(searchAddressResponse?.data);
+      adminCountryDetails(searchAddressResponse?.data.countryId);
+    } else {
+      setAddressData(null);
+      setCountryData(null);
+    }
+  };
+
+  const adminCountryDetails = async (countryId) => {
+    const searchCountryResponse = await countrySearch({
+      searchData: { _id: countryId },
+    });
+    if (searchCountryResponse?.success) {
+      setCountryData(searchCountryResponse?.countryList[0].name);
+    }
+  };
+
+  const adminGenderDetails = async (genderId) => {
+    const searchGenderResponse = await genderSearch({
+      searchData: { _id: genderId },
+    });
+    if (searchGenderResponse?.success) {
+      setGenderData(searchGenderResponse?.genderList[0].gender);
+    }
+  };
+
+  async function handleAccountStatusOnClick(email) {
+    if (admin?.accountStatus === 2) {
+      const adminSearchResponse = await searchAdmin({ searchData: { email } });
+      if (adminSearchResponse?.success) {
+        if (adminSearchResponse?.adminData[0].accountStatus === 1) {
+          const adminUpdateResponse = await UpdateAdmin({
+            email,
+            updateData: { accountStatus: 0 },
+          });
+          if (adminUpdateResponse?.success) {
+            setSuccessMsg("Account status updated successfully");
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          } else {
+            setSuccessMsg(null);
+            errorMsg("Something went wrong");
+          }
+        } else if (adminSearchResponse?.adminData[0].accountStatus === 0) {
+          const adminUpdateResponse = await UpdateAdmin({
+            email,
+            updateData: { accountStatus: 1 },
+          });
+          if (adminUpdateResponse?.success) {
+            setSuccessMsg("Account status updated successfully");
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          } else {
+            setSuccessMsg(null);
+            errorMsg("Something went wrong");
+          }
+        }
+      } else {
+        setSuccessMsg(null);
+        errorMsg("Something went wrong");
+      }
+      setTimeout(() => {
+        setSuccessMsg(null);
+        setErrorMsg(null);
+      }, 3000);
+    } else {
+      setErrorMsg("Access Denied");
+    }
+    setTimeout(() => {
+      setSuccessMsg(null);
+      setErrorMsg(null);
+    }, 3000);
+  }
