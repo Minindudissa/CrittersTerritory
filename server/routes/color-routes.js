@@ -5,7 +5,7 @@ const {
   createColor,
   searchColor,
   updateColor,
-} = require("../controllers/Color-Controller");
+} = require("../controllers/color-Controller");
 
 colorRouter.post("/create", createColor);
 colorRouter.post("/update", updateColor);
