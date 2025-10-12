@@ -27,6 +27,8 @@ function Listings() {
   const { productType, setProductType } = useContext(ProductTypeContext);
   const { category, setCategory } = useContext(CategoryContext);
 
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -186,7 +188,7 @@ function Listings() {
                           .map((productImageItem, productImageItemIndex) => (
                             <img
                               key={productImageItemIndex}
-                              src={`http://localhost:5000/${productImageItem.imagePath[0]}`}
+                              src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
                               alt="Product 1"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
@@ -210,7 +212,7 @@ function Listings() {
                           productImageItem.productId === productItem._id ? (
                             <img
                               key={productImageItemIndex}
-                              src={`http://localhost:5000/${productImageItem.imagePath[1]}`} // Show second image on hover
+                              src={`http://${myIp}:5000/${productImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />

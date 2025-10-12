@@ -39,6 +39,8 @@ function CartListing() {
     useState(true);
   const [isAllDigital, setIsAllDigital] = useState(true);
 
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true); // Start loading
@@ -560,7 +562,7 @@ function CartListing() {
     );
 
     const makePaymentResponse = await fetch(
-      "http://localhost:5000/api/payment/create-checkout-session",
+      `http://${myIp}:5000/api/payment/create-checkout-session`,
       {
         method: "POST",
         headers: {
@@ -652,7 +654,7 @@ function CartListing() {
                             <img
                               key={productImageItem.productId} // Unique key
                               className="z-[2] w-80 h-80 object-contain" // Doubled size
-                              src={`http://localhost:5000/${productImageItem.imagePath[0]}`}
+                              src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
                               alt=""
                             />
                           ) : null;

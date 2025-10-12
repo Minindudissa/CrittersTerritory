@@ -72,4 +72,4 @@ app.use("/api", (req, res) => {
     message: "Hello Express",
   });
 });
-app.listen(5000, '0.0.0.0', () => console.log("App is now Running at Port 5000"));
+app.listen(5000, () => console.log("App is now Running at Port 5000"));

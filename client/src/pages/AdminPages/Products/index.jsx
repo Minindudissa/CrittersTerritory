@@ -14,6 +14,8 @@ function Products() {
   const [totalPages, setTotalPages] = useState(1);
   const [expandedProduct, setExpandedProduct] = useState(null);
   const [searchTerm, setsearchTerm] = useState("");
+  
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -177,7 +179,7 @@ function Products() {
                       <td colSpan={7} className="p-4 border border-gray-700">
                         <div className="flex gap-4">
                           <img
-                            src={`http://localhost:5000/${productImageList}`}
+                            src={`http://${myIp}:5000/${productImageList}`}
                             alt={product.name}
                             className="w-32 h-32 object-cover rounded-md"
                           />

@@ -27,6 +27,8 @@ function Wishlist() {
 
   const [successMsg, setSuccessMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -509,7 +511,7 @@ function Wishlist() {
                         <img
                           key={productImageItemIndex} // Add a unique key
                           className="object-cover z-[2] absolute w-full rounded-t-lg h-96 md:h-full md:rounded-none md:rounded-s-lg"
-                          src={`http://localhost:5000/${productImageItem.imagePath[0]}`}
+                          src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
                           alt=""
                         />
                       ) : null

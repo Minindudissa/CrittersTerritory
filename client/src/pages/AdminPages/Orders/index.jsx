@@ -30,6 +30,8 @@ function AllOrders() {
   const [countryList, setCountryList] = useState([]);
   const [tracking, setTracking] = useState(null);
   const [searchTerm, setsearchTerm] = useState("");
+  
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -401,7 +403,7 @@ function AllOrders() {
                             <div>
                               <img
                                 key={orderItem.productId}
-                                src={`http://localhost:5000/${
+                                src={`http://${myIp}:5000/${
                                   imageList.find(
                                     (image) =>
                                       image.productId === item.productId

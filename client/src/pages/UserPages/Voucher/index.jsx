@@ -18,6 +18,8 @@ function Voucher() {
 
   const [addVoucherCode, setAddVoucherCode] = useState("");
   const [addVoucherValue, setAddVoucherValue] = useState("");
+  
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +45,7 @@ function Voucher() {
     });
 
     const makePaymentResponse = await fetch(
-      "http://localhost:5000/api/payment/create-checkout-session",
+      `http://${myIp}:5000/api/payment/create-checkout-session`,
       {
         method: "POST",
         headers: {

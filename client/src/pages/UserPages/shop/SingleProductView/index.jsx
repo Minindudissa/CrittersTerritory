@@ -61,6 +61,8 @@ function ProductDetails() {
   const [relatedProductList, setRelatedProductList] = useState([]);
   const [relatedProductImages, setRelatedProductImages] = useState([]);
 
+const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
   const increaseQuantity = () => {
     if (quantity < preferredvariant?.quantity) {
       setQuantity((prev) => prev + 1);
@@ -747,7 +749,7 @@ function ProductDetails() {
               <div className=" shadow p-0 flex flex-row justify-center items-center ">
                 {productImagesList[imageIndex] && (
                   <img
-                    src={`http://localhost:5000/${productImagesList[imageIndex]}`}
+                    src={`http://${myIp}:5000/${productImagesList[imageIndex]}`}
                     alt="Product1"
                     className="w-full aspect-square"
                   />
@@ -775,7 +777,7 @@ function ProductDetails() {
                   {productImagesList.map((productImageItem, index) => (
                     <img
                       key={index}
-                      src={`http://localhost:5000/${productImageItem}`}
+                      src={`http://${myIp}:5000/${productImageItem}`}
                       onClick={() => setToMainImage(index)}
                       className="w-24 h-24 object-cover cursor-pointer"
                     />
@@ -1237,7 +1239,7 @@ function ProductDetails() {
                             ) => (
                               <img
                                 key={RelatedproductImageItemIndex}
-                                src={`http://localhost:5000/${RelatedproductImageItem.imagePath[0]}`}
+                                src={`http://${myIp}:5000/${RelatedproductImageItem.imagePath[0]}`}
                                 alt="Product 1"
                                 className="w-full object-cover object-top aspect-[230/307] rounded-md"
                               />
@@ -1266,7 +1268,7 @@ function ProductDetails() {
                           RelatedproductItem._id ? (
                             <img
                               key={RelatedproductImageItemIndex}
-                              src={`http://localhost:5000/${RelatedproductImageItem.imagePath[1]}`} // Show second image on hover
+                              src={`http://${myIp}:5000/${RelatedproductImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
@@ -1784,7 +1786,7 @@ function ProductDetails() {
                       <div className=" w-40 h-40 flex flex-row gap-4 py-2">
                         {reviewItem.imagePath.map((ImagePathItem, Index) => (
                           <img
-                            src={`http://localhost:5000/${ImagePathItem}`}
+                            src={`http://${myIp}:5000/${ImagePathItem}`}
                             alt="Review Image"
                             className="w-full h-fit"
                             key={Index}
