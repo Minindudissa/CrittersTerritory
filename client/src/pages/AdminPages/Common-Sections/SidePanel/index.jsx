@@ -64,7 +64,7 @@ function SidePanel() {
             onClick={() => navigate("../admin/dashboard", { replace: true })}
           >
             <img
-              src="/src/assets/Logo/Critters Territory Logo.png"
+              src="/assets/Logo/Critters Territory Logo.png"
               alt="logo"
               className="w-[70px]"
             />

@@ -665,7 +665,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             productItem._id === cartItem.productId
                         )?.productType === "Digital" ? (
                           <img
-                            src="/src/assets/Digital_Banner/Digital_Banner.png"
+                            src="/assets/Digital_Banner/Digital_Banner.png"
                             className="absolute z-[3] w-80 h-80 object-contain" // Fit to image size
                             alt="Digital banner"
                           />
@@ -1679,7 +1679,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
                 <div className="mt-4 flex flex-wrap justify-center gap-4 rounded-md bg-yellow-400">
                   <img
-                    src="/src/assets/Site_Images/PaymentMethodImage/stripe-payments.png"
+                    src="/assets/Site_Images/PaymentMethodImage/stripe-payments.png"
                     className="w-full object-contain rounded-md"
                   />
                 </div>

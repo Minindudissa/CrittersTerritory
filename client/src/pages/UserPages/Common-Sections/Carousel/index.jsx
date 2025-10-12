@@ -31,7 +31,7 @@ export default function Carousel() {
         <SwiperSlide>
           <div className=" w-full h-auto">
             <img
-              src={`/src/assets/Site_Images/CarouselImages/CarouselImages_1.jpg`}
+              src={`/assets/Site_Images/CarouselImages/CarouselImages_1.jpg`}
               alt="Carousel Images 1"
               className="w-full object-cover object-top aspect-video rounded-md"
             />
@@ -40,7 +40,7 @@ export default function Carousel() {
         <SwiperSlide>
           <div className=" w-full h-auto">
             <img
-              src={`/src/assets/Site_Images/CarouselImages/CarouselImages_2.jpg`}
+              src={`/assets/Site_Images/CarouselImages/CarouselImages_2.jpg`}
               alt="Carousel Images 2"
               className="w-full object-cover object-top aspect-video rounded-md"
             />
@@ -49,7 +49,7 @@ export default function Carousel() {
         <SwiperSlide>
           <div className=" w-full h-auto">
             <img
-              src={`/src/assets/Site_Images/CarouselImages/CarouselImages_3.jpg`}
+              src={`/assets/Site_Images/CarouselImages/CarouselImages_3.jpg`}
               alt="Carousel Images 3"
               className="w-full object-cover object-top aspect-video rounded-md"
             />
@@ -58,7 +58,7 @@ export default function Carousel() {
         <SwiperSlide>
           <div className=" w-full h-auto">
             <img
-              src={`/src/assets/Site_Images/CarouselImages/CarouselImages_4.jpg`}
+              src={`/assets/Site_Images/CarouselImages/CarouselImages_4.jpg`}
               alt="Carousel Images 4"
               className="w-full object-cover object-top aspect-video rounded-md"
             />
@@ -67,7 +67,7 @@ export default function Carousel() {
         <SwiperSlide>
           <div className=" w-full h-auto">
             <img
-              src={`/src/assets/Site_Images/CarouselImages/CarouselImages_5.jpg`}
+              src={`/assets/Site_Images/CarouselImages/CarouselImages_5.jpg`}
               alt="Carousel Images 5"
               className="w-full object-cover object-top aspect-video rounded-md"
             />

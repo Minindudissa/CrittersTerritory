@@ -519,7 +519,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
                   {productItem.productType === "Digital" ? (
                     <img
-                      src="/src/assets/Digital_Banner/Digital_Banner.png"
+                      src="/assets/Digital_Banner/Digital_Banner.png"
                       className=" relative z-[3] w-full h-fit"
                       alt="Digital banner"
                     />

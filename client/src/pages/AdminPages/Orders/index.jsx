@@ -414,7 +414,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             </div>
                             {item.productType === "Digital" && (
                               <img
-                                src="/src/assets/Digital_Banner/Digital_Banner.png"
+                                src="/assets/Digital_Banner/Digital_Banner.png"
                                 className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                                 alt="Digital banner"
                               />

@@ -1,4 +1,4 @@
-const promoCode = require("../models/promo-code");
+ const promoCode = require("../models/promo-code");
 
 const createPromoCode = async (req, res) => {
   const { code, promoValue, isUsed, startDate, endDate, userEmail } = req.body;

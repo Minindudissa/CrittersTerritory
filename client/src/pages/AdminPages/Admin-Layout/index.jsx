@@ -16,7 +16,7 @@ function AdminLayout() {
         className=" w-full"
         style={{
           backgroundImage:
-            "url('/src/assets/Site_Images/black-370118_1920.png')",
+            "url('/assets/Site_Images/black-370118_1920.png')",
           backgroundSize: "cover", // or 'contain', depending on your need
           backgroundPosition: "center",
           minHeight: "100vh",

@@ -99,7 +99,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
         >
           <img
             className="object-cover w-36 rounded-s-lg h-auto"
-            src="/src/assets/Site_Images/Gift Voucher/Gift_Voucher_Banner.png"
+            src="/assets/Site_Images/Gift Voucher/Gift_Voucher_Banner.png"
             alt=""
           />
           <div className="flex flex-col justify-between p-4 leading-normal">
@@ -198,7 +198,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       {/* Overlay Digital Banner (Only for Digital Products) */}
                       {productItem.productType === "Digital" && (
                         <img
-                          src="/src/assets/Digital_Banner/Digital_Banner.png"
+                          src="/assets/Digital_Banner/Digital_Banner.png"
                           className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                           alt="Digital banner"
                         />

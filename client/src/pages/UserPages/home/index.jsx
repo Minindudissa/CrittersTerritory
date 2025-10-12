@@ -113,7 +113,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             className=" h-[12rem] sm:h-[16rem] md:h-[14rem] lg:h-[8.5rem] xl:h-[11rem] 2xl:h-[14rem] w-full rounded-md cursor-pointer ease-in-out duration-300 hover:scale-[102%]"
           >
             <img
-              src={`/src/assets/Site_Images/PromotionalImages/PromotionalImages_1.jpg`}
+              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_1.jpg`}
               alt="Promotional Images 1"
               className="w-full h-full object-cover object-top aspect-square rounded-md"
             />
@@ -123,7 +123,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             className=" h-[12rem] sm:h-[16rem] md:h-[14rem] lg:h-[8.5rem] xl:h-[11rem] 2xl:h-[14rem] w-full rounded-md cursor-pointer ease-in-out duration-300 hover:scale-[102%]"
           >
             <img
-              src={`/src/assets/Site_Images/PromotionalImages/PromotionalImages_2.jpg`}
+              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_2.jpg`}
               alt="Promotional Images 2"
               className="w-full h-full object-cover object-top aspect-square rounded-md"
             />
@@ -357,7 +357,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   {/* Default Image */}
                   <div className="opacity-100 transition-opacity hover:ease-in-out duration-300 ease-in-out">
                     <img
-                      src={`/src/assets/Site_Images/CategoryImages/${categoryItem.name}_1.jpg`}
+                      src={`/assets/Site_Images/CategoryImages/${categoryItem.name}_1.jpg`}
                       alt={`Category Image ${Index + 1}`}
                       className="w-full object-cover object-top aspect-square rounded-md"
                     />
@@ -413,7 +413,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     {/* Overlay Digital Banner (Only for Digital Products) */}
                     {productItem.productType === "Digital" && (
                       <img
-                        src="/src/assets/Digital_Banner/Digital_Banner.png"
+                        src="/assets/Digital_Banner/Digital_Banner.png"
                         className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                         alt="Digital banner"
                       />
@@ -751,7 +751,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     {/* Overlay Digital Banner (Only for Digital Products) */}
                     {productItem.productType === "Digital" && (
                       <img
-                        src="/src/assets/Digital_Banner/Digital_Banner.png"
+                        src="/assets/Digital_Banner/Digital_Banner.png"
                         className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                         alt="Digital banner"
                       />

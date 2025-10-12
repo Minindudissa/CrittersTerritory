@@ -551,7 +551,7 @@ function Invoice() {
           <div className="flex justify-between">
             <div className=" flex flex-col justify-center items-center">
               <img
-                src="/src/assets/Logo/Critters Territory Logo.png"
+                src="/assets/Logo/Critters Territory Logo.png"
                 alt="logo"
                 className="w-[100px]"
               />

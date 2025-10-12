@@ -122,7 +122,7 @@ function AdminLogIn() {
       <div className="w-full flex items-center">
         <div className="h-screen min-h-full w-full md:block hidden">
           <img
-            src="/src/assets/Site_Images/DALL·E 2025-01-27 16.22.49 - A detailed and vibrant image of various 3D-printed models arranged neatly on a table. The models include a flexible red dragon with wings, a flexi mar.webp"
+            src="/assets/Site_Images/DALL·E 2025-01-27 16.22.49 - A detailed and vibrant image of various 3D-printed models arranged neatly on a table. The models include a flexible red dragon with wings, a flexi mar.webp"
             className="w-full h-full object-cover"
             alt="login-image"
           />

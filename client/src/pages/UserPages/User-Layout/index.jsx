@@ -179,7 +179,7 @@ function UserLayout() {
     <div
       className=" w-full h-full"
       style={{
-        backgroundImage: "url('/src/assets/Site_Images/black-370118_1920.png')",
+        backgroundImage: "url('/assets/Site_Images/black-370118_1920.png')",
         backgroundSize: "cover", // or 'contain', depending on your need
         backgroundPosition: "center",
         height: "100%", // adjust the height as needed

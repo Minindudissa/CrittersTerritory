@@ -94,7 +94,7 @@ function Header() {
             className="max-sm:hidden cursor-pointer"
           >
             <img
-              src="/src/assets/Logo/Critters_Territory.png"
+              src="/assets/Logo/Critters_Territory.png"
               alt="logo Lettering"
               className="w-48 mt-2"
             />
@@ -104,7 +104,7 @@ function Header() {
             className="hidden max-sm:block cursor-pointer"
           >
             <img
-              src="/src/assets/Logo/Critters_Territory.png"
+              src="/assets/Logo/Critters_Territory.png"
               alt="logo Lettering"
               className="w-48 mt-2"
             />
