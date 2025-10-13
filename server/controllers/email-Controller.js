@@ -1,4 +1,3 @@
-require("dotenv").config();
 const brevo = require("@getbrevo/brevo");
 const MY_BREVO_API_KEY = process.env.BREVO_API_KEY;
 
