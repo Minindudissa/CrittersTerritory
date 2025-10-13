@@ -9,7 +9,7 @@ const Email = async (req, res) => {
 
     let apiKey = defaultClient.authentications["api-key"];
     apiKey.apiKey =
-      "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";
+      "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";
 
     let apiInstance = new brevo.TransactionalEmailsApi();
     let sendSmtpEmail = new brevo.SendSmtpEmail();
