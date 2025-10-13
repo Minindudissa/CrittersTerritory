@@ -70,7 +70,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
       <div className="w-full py-5 md:flex md:flex-row md:justify-evenly flex flex-col items-center space-y-4 md:space-y-0">
         <div className="bg-white bg-opacity-15 flex px-4 py-3 border border-gray-300 rounded-lg focus-within:border-yellow-500 min-w-[60%]">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 192.904 192.904"
             width="18px"
             className="fill-gray-300 mr-3"
@@ -179,7 +179,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       <td colSpan={7} className="p-4 border border-gray-700">
                         <div className="flex gap-4">
                           <img
-                            src={`http://${myIp}:5000/${productImageList}`}
+                            src={`https://${myIp}/${productImageList}`}
                             alt={product.name}
                             className="w-32 h-32 object-cover rounded-md"
                           />
@@ -270,7 +270,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             disabled={currentPage === 1}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300"
               viewBox="0 0 55.753 55.753"
             >
@@ -305,7 +305,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             disabled={currentPage === totalPages}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300 rotate-180"
               viewBox="0 0 55.753 55.753"
             >

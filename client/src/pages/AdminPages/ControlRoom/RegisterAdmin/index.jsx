@@ -109,7 +109,7 @@ function RegisterNewAdmin() {
         <svg
           className="w-20 h-20 text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="none"

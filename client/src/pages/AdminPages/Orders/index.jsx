@@ -339,7 +339,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
         <svg
           className="w-20 h-20 text-white dark:text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="none"
@@ -359,7 +359,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
       <div className="w-full py-5 flex justify-center">
         <div className="bg-white bg-opacity-15 flex px-4 py-3 border border-gray-300 rounded-lg focus-within:border-yellow-500 min-w-[60%]">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 192.904 192.904"
             width="18px"
             className="fill-gray-300 mr-3"
@@ -403,7 +403,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             <div>
                               <img
                                 key={orderItem.productId}
-                                src={`http://${myIp}:5000/${
+                                src={`https://${myIp}/${
                                   imageList.find(
                                     (image) =>
                                       image.productId === item.productId
@@ -763,7 +763,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             disabled={currentPage === 1}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300"
               viewBox="0 0 55.753 55.753"
             >
@@ -798,7 +798,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             disabled={currentPage === totalPages}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300 rotate-180"
               viewBox="0 0 55.753 55.753"
             >
