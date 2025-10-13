@@ -2,7 +2,7 @@ function PageLoading() {
   return (
     <div className="flex flex-wrap justify-center items-center w-full h-screen">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
         className="spinner-7 w-20 h-20 shrink-0 animate-spin"
         viewBox="0 0 512 512"
       >

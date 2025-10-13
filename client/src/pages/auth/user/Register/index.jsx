@@ -392,7 +392,7 @@ function UserRegister() {
                       placeholder="Enter First Name"
                     />
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       fill="#bbb"
                       stroke="#bbb"
                       className="w-4 h-4 absolute right-4"
@@ -427,7 +427,7 @@ function UserRegister() {
                       placeholder="Enter Last name"
                     />
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       fill="#bbb"
                       stroke="#bbb"
                       className="w-4 h-4 absolute right-4"
@@ -464,7 +464,7 @@ function UserRegister() {
                     placeholder="Enter email"
                   />
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="https://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-4 h-4 absolute right-4"
@@ -517,7 +517,7 @@ function UserRegister() {
                     onClick={() => {
                       setIsPasswordVisible(!isPasswordVisible);
                     }}
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="https://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
                     className="w-4 h-4 absolute right-4 cursor-pointer"

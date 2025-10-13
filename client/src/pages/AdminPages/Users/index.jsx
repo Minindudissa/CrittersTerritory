@@ -135,7 +135,7 @@ function Users() {
         <svg
           className="w-20 h-20 text-white dark:text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="none"
@@ -155,7 +155,7 @@ function Users() {
       <div className="w-full py-5 flex justify-center">
         <div className="bg-white bg-opacity-15 flex px-4 py-3 border border-gray-300 rounded-lg focus-within:border-yellow-500 min-w-[60%]">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 192.904 192.904"
             width="18px"
             className="fill-gray-300 mr-3"
@@ -223,7 +223,7 @@ function Users() {
                 </label>
               </div>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto"
               >
@@ -338,7 +338,7 @@ function Users() {
             disabled={currentPage === 1}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300"
               viewBox="0 0 55.753 55.753"
             >
@@ -373,7 +373,7 @@ function Users() {
             disabled={currentPage === totalPages}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300 rotate-180"
               viewBox="0 0 55.753 55.753"
             >
