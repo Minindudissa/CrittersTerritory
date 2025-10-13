@@ -416,12 +416,12 @@ function Home() {
                             productImageItem.productId === productItem._id
                         )
                         .map((productImageItem, productImageItemIndex) => {
-                          console.log(`https://${myIp}/uploads/${productImageItem.imagePath[0]}`);
+                          console.log(`https://${myIp}/${productImageItem.imagePath[0].replace(/\\/g, "/")}`);
 
                           return (
                             <img
                               key={productImageItemIndex}
-                              src={`https://${myIp}/uploads/${productImageItem.imagePath[0]}`}
+                              src={`https://${myIp}/${productImageItem.imagePath[0].replace(/\\/g, "/")}`}
                               alt={`Product ${productImageItemIndex + 1}`}
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
