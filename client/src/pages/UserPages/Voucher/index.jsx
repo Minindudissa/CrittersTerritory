@@ -45,7 +45,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
     });
 
     const makePaymentResponse = await fetch(
-      `http://${myIp}:5000/api/payment/create-checkout-session`,
+      `https://${myIp}/api/payment/create-checkout-session`,
       {
         method: "POST",
         headers: {

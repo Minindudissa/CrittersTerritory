@@ -464,7 +464,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
         <svg
           className="w-20 h-20 text-white dark:text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
         >
@@ -511,7 +511,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                         <img
                           key={productImageItemIndex} // Add a unique key
                           className="object-cover z-[2] absolute w-full rounded-t-lg h-96 md:h-full md:rounded-none md:rounded-s-lg"
-                          src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
+                          src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                           alt=""
                         />
                       ) : null
@@ -560,7 +560,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                 className="w-5 h-5 fill-[#facc15]"
                                 viewBox="0 0 14 13"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns="https://www.w3.org/2000/svg"
                               >
                                 <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                               </svg>
