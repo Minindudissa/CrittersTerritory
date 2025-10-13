@@ -63,8 +63,8 @@ const makePaymentStripe = async (req, res, next) => {
             ],
           }
         : {}),
-      success_url: `http://localhost:5173/payment-success?fromPayment=true`,
-      cancel_url: `http://localhost:5173/payment-declined?fromCancel=true`,
+      success_url: `https://www.crittersterritory.com/payment-success?fromPayment=true`,
+      cancel_url: `https://www.crittersterritory.com/payment-declined?fromCancel=true`,
       metadata: {
         userId,
         discount,
