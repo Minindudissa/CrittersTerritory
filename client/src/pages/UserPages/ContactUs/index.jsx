@@ -106,7 +106,7 @@ function ContactUs() {
                 <li className="flex items-center">
                   <div className="bg-[#e9e9e9] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       width="20px"
                       height="20px"
                       fill="#000000"
@@ -136,7 +136,7 @@ function ContactUs() {
                     target="_blank"
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       className=" w-10 h-10"
                       viewBox="0 0 49.652 49.652"
                     >
@@ -169,7 +169,7 @@ function ContactUs() {
                     target="_blank"
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       className="w-9 h-9 icon flex justify-center items-center"
@@ -189,7 +189,7 @@ function ContactUs() {
                     target="_blank"
                   >
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       className="w-9 h-9 icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube"
@@ -212,8 +212,8 @@ function ContactUs() {
                       className="w-8 h-8"
                       viewBox="0 0 48 48"
                       version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlnsXlink="http://www.w3.org/1999/xlink"
+                      xmlns="https://www.w3.org/2000/svg"
+                      xmlnsXlink="https://www.w3.org/1999/xlink"
                     >
                       <g
                         id="Icon/Social/tiktok-color"
@@ -319,7 +319,7 @@ function ContactUs() {
             </span>
             {FAQ1 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -331,7 +331,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -371,7 +371,7 @@ function ContactUs() {
             </span>
             {FAQ2 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -383,7 +383,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -421,7 +421,7 @@ function ContactUs() {
             <span className="mr-4">Do you ship internationally?</span>
             {FAQ3 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -433,7 +433,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -470,7 +470,7 @@ function ContactUs() {
             <span className="mr-4">How long does shipping take?</span>
             {FAQ4 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -482,7 +482,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -520,7 +520,7 @@ function ContactUs() {
             <span className="mr-4">Can I track my order?</span>
             {FAQ5 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -532,7 +532,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -572,7 +572,7 @@ function ContactUs() {
             </span>
             {FAQ6 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -584,7 +584,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -627,7 +627,7 @@ function ContactUs() {
             <span className="mr-4">Do you accept returns or exchanges?</span>
             {FAQ7 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -639,7 +639,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -680,7 +680,7 @@ function ContactUs() {
             </span>
             {FAQ8 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -692,7 +692,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -731,7 +731,7 @@ function ContactUs() {
             </span>
             {FAQ9 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -743,7 +743,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -782,7 +782,7 @@ function ContactUs() {
             </span>
             {FAQ10 ? (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >
@@ -794,7 +794,7 @@ function ContactUs() {
               </svg>
             ) : (
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 viewBox="0 0 42 42"
                 className="w-3 fill-current ml-auto shrink-0"
               >

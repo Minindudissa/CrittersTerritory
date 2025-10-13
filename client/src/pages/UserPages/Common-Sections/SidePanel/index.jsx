@@ -33,7 +33,7 @@ function UserProfileSidePanel() {
         {isMenuVisible ? (
           <svg
             className="h-8 w-8"
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -49,7 +49,7 @@ function UserProfileSidePanel() {
         ) : (
           <svg
             className="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 50 50"
           >
             <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
@@ -66,7 +66,7 @@ function UserProfileSidePanel() {
               className="cursor-pointer text-black hover:text-yellow-500 text-[15px] flex items-center hover:bg-black hover:bg-opacity-40 rounded px-4 py-3 transition-all"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
                 className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
                 viewBox="0 0 512 512"
@@ -89,7 +89,7 @@ function UserProfileSidePanel() {
               className="text-black cursor-pointer hover:text-yellow-500 text-[15px] flex items-center hover:bg-black hover:bg-opacity-40 rounded px-4 py-3 transition-all"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
                 className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
                 viewBox="0 0 512 512"
@@ -112,7 +112,7 @@ function UserProfileSidePanel() {
               className="text-black cursor-pointer hover:text-yellow-500 text-[15px] flex items-center hover:bg-black hover:bg-opacity-40 rounded px-4 py-3 transition-all"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
                 className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
                 viewBox="0 0 512 512"
@@ -137,7 +137,7 @@ function UserProfileSidePanel() {
               className="text-black cursor-pointer hover:text-yellow-500 text-[15px] flex items-center hover:bg-black hover:bg-opacity-40 rounded px-4 py-3 transition-all"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
                 className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
                 viewBox="0 0 6.35 6.35"

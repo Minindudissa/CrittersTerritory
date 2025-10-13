@@ -63,7 +63,7 @@ function Checkout() {
 
               <div className="flex bg-white border-b-2 focus-within:border-gray-800 overflow-hidden">
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   className="w-12 ml-3"
                   viewBox="0 0 291.764 291.764"
                 >

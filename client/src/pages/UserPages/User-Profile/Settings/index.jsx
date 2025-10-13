@@ -41,7 +41,7 @@ function Settings() {
       <div className=" w-full flex flex-col justify-center items-center">
         <svg
           className=" w-20 h-20"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           viewBox="0 0 256.001 256.001"
           id="gear"
         >

@@ -3,7 +3,7 @@ function Delivery() {
     <div className=" flex flex-col justify-center items-center ">
       <div className=" w-full flex flex-col justify-center items-center ">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="128"
           height="128"
           xmlSpace="preserve"

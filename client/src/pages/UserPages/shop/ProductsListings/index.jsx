@@ -188,7 +188,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           .map((productImageItem, productImageItemIndex) => (
                             <img
                               key={productImageItemIndex}
-                              src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
+                              src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                               alt="Product 1"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
@@ -212,7 +212,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           productImageItem.productId === productItem._id ? (
                             <img
                               key={productImageItemIndex}
-                              src={`http://${myIp}:5000/${productImageItem.imagePath[1]}`} // Show second image on hover
+                              src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
@@ -262,7 +262,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                       className="w-4 h-4 fill-[#facc15]"
                                       viewBox="0 0 14 13"
                                       fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns="https://www.w3.org/2000/svg"
                                     >
                                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                                     </svg>
@@ -273,7 +273,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                 {halfStar > 0 && (
                                   <svg
                                     className="w-4 h-4"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="https://www.w3.org/2000/svg"
                                     viewBox="0 0 14 13"
                                     fill="none"
                                   >
@@ -298,7 +298,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                       className="w-4 h-4 fill-[#CED5D8]"
                                       viewBox="0 0 14 13"
                                       fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns="https://www.w3.org/2000/svg"
                                     >
                                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                                     </svg>
@@ -559,7 +559,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
               disabled={currentPage === 1}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 className="w-3 fill-gray-300"
                 viewBox="0 0 55.753 55.753"
               >
@@ -594,7 +594,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
               disabled={currentPage === totalPages}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 className="w-3 fill-gray-300 rotate-180"
                 viewBox="0 0 55.753 55.753"
               >

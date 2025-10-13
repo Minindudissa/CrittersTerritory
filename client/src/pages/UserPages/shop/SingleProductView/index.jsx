@@ -749,7 +749,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
               <div className=" shadow p-0 flex flex-row justify-center items-center ">
                 {productImagesList[imageIndex] && (
                   <img
-                    src={`http://${myIp}:5000/${productImagesList[imageIndex]}`}
+                    src={`https://${myIp}/${productImagesList[imageIndex]}`}
                     alt="Product1"
                     className="w-full aspect-square"
                   />
@@ -777,7 +777,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   {productImagesList.map((productImageItem, index) => (
                     <img
                       key={index}
-                      src={`http://${myIp}:5000/${productImageItem}`}
+                      src={`https://${myIp}/${productImageItem}`}
                       onClick={() => setToMainImage(index)}
                       className="w-24 h-24 object-cover cursor-pointer"
                     />
@@ -819,7 +819,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       className="w-4 h-4 fill-[#facc15]"
                       viewBox="0 0 14 13"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                     >
                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                     </svg>
@@ -834,7 +834,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   }).map((_, i) => (
                     <svg
                       className="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                       viewBox="0 0 14 13"
                       fill="none"
                     >
@@ -867,7 +867,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       className="w-4 h-4 fill-[#CED5D8]"
                       viewBox="0 0 14 13"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns="https://www.w3.org/2000/svg"
                     >
                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                     </svg>
@@ -1136,7 +1136,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   <svg
                     className="w-8 h-8 text-red-600 dark:text-white"
                     aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="https://www.w3.org/2000/svg"
                     width="24"
                     height="24"
                     fill="currentColor"
@@ -1148,7 +1148,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   <svg
                     className="w-8 h-8 text-gray-800 dark:text-white"
                     aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="https://www.w3.org/2000/svg"
                     width="24"
                     height="24"
                     fill="none"
@@ -1239,7 +1239,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             ) => (
                               <img
                                 key={RelatedproductImageItemIndex}
-                                src={`http://${myIp}:5000/${RelatedproductImageItem.imagePath[0]}`}
+                                src={`https://${myIp}/${RelatedproductImageItem.imagePath[0]}`}
                                 alt="Product 1"
                                 className="w-full object-cover object-top aspect-[230/307] rounded-md"
                               />
@@ -1268,7 +1268,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           RelatedproductItem._id ? (
                             <img
                               key={RelatedproductImageItemIndex}
-                              src={`http://${myIp}:5000/${RelatedproductImageItem.imagePath[1]}`} // Show second image on hover
+                              src={`https://${myIp}/${RelatedproductImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
@@ -1319,7 +1319,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                       className="w-4 h-4 fill-[#facc15]"
                                       viewBox="0 0 14 13"
                                       fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns="https://www.w3.org/2000/svg"
                                     >
                                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                                     </svg>
@@ -1330,7 +1330,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                 {halfStar > 0 && (
                                   <svg
                                     className="w-4 h-4"
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="https://www.w3.org/2000/svg"
                                     viewBox="0 0 14 13"
                                     fill="none"
                                   >
@@ -1355,7 +1355,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                       className="w-4 h-4 fill-[#CED5D8]"
                                       viewBox="0 0 14 13"
                                       fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
+                                      xmlns="https://www.w3.org/2000/svg"
                                     >
                                       <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                                     </svg>
@@ -1754,7 +1754,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           className="w-3 fill-[#facc15]"
                           viewBox="0 0 14 13"
                           fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns="https://www.w3.org/2000/svg"
                         >
                           <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                         </svg>
@@ -1767,7 +1767,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             className="w-3 fill-[#CED5D8]"
                             viewBox="0 0 14 13"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns="https://www.w3.org/2000/svg"
                           >
                             <path d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
                           </svg>
@@ -1786,7 +1786,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       <div className=" w-40 h-40 flex flex-row gap-4 py-2">
                         {reviewItem.imagePath.map((ImagePathItem, Index) => (
                           <img
-                            src={`http://${myIp}:5000/${ImagePathItem}`}
+                            src={`https://${myIp}/${ImagePathItem}`}
                             alt="Review Image"
                             className="w-full h-fit"
                             key={Index}

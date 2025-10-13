@@ -562,7 +562,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
     );
 
     const makePaymentResponse = await fetch(
-      `http://${myIp}:5000/api/payment/create-checkout-session`,
+      `https://${myIp}/api/payment/create-checkout-session`,
       {
         method: "POST",
         headers: {
@@ -654,7 +654,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             <img
                               key={productImageItem.productId} // Unique key
                               className="z-[2] w-80 h-80 object-contain" // Doubled size
-                              src={`http://${myIp}:5000/${productImageItem.imagePath[0]}`}
+                              src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                               alt=""
                             />
                           ) : null;
@@ -1359,7 +1359,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                   className="border-none outline-none bg-white focus:outline-none focus:outline-transparent bg-opacity-50 hover:bg-opacity-70"
                                 >
                                   <svg
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="https://www.w3.org/2000/svg"
                                     className="w-2.5 h-2.5"
                                     viewBox="0 0 121.805 121.804"
                                   >
@@ -1386,7 +1386,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                   className="border-none  outline-none bg-white focus:outline-none focus:outline-transparent bg-opacity-50 hover:bg-opacity-70"
                                 >
                                   <svg
-                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="https://www.w3.org/2000/svg"
                                     className="w-2.5 h-2.5"
                                     viewBox="0 0 512 512"
                                   >
@@ -1486,7 +1486,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             className="bg-white bg-opacity-25 hover:bg-opacity-50 text-white flex items-center justify-center py-3 outline-none focus:outline-none focus:outline-transparent border-none hover:border-none hover:border-transparent text-sm"
                           >
                             <svg
-                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns="https://www.w3.org/2000/svg"
                               className="w-3.5 fill-current mr-3 inline-block text-white"
                               viewBox="0 0 128 128"
                             >
@@ -1505,7 +1505,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             className="bg-white bg-opacity-25 hover:bg-opacity-50 text-white flex items-center justify-center py-3 outline-none focus:outline-none focus:outline-transparent border-none hover:border-none hover:border-transparent text-sm"
                           >
                             <svg
-                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns="https://www.w3.org/2000/svg"
                               className="w-3 fill-current mr-3 inline-block text-white"
                               viewBox="0 0 390 390"
                             >

@@ -231,7 +231,7 @@ function Footer() {
                 target="_blank"
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   className=" w-10 h-10"
                   viewBox="0 0 49.652 49.652"
                 >
@@ -264,7 +264,7 @@ function Footer() {
                 target="_blank"
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   className="w-9 h-9 icon flex justify-center items-center"
@@ -284,7 +284,7 @@ function Footer() {
                 target="_blank"
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   className="w-9 h-9 icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube"
@@ -307,8 +307,8 @@ function Footer() {
                   className="w-8 h-8"
                   viewBox="0 0 48 48"
                   version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  xmlns="https://www.w3.org/2000/svg"
+                  xmlnsXlink="https://www.w3.org/1999/xlink"
                 >
                   <g
                     id="Icon/Social/tiktok-color"

@@ -203,7 +203,7 @@ function MyProfile() {
         <svg
           className="w-20 h-20 text-white dark:text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="none"
@@ -396,7 +396,7 @@ function MyProfile() {
               placeholder="Enter Current password"
             />
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               fill="#bbb"
               stroke="#bbb"
               className="w-4 h-4 absolute right-4 cursor-pointer"
@@ -431,7 +431,7 @@ function MyProfile() {
               placeholder="Enter New password"
             />
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               fill="#bbb"
               stroke="#bbb"
               className="w-4 h-4 absolute right-4 cursor-pointer"
@@ -466,7 +466,7 @@ function MyProfile() {
               placeholder="Confirm password"
             />
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               fill="#bbb"
               stroke="#bbb"
               className="w-4 h-4 absolute right-4 cursor-pointer"

@@ -17,7 +17,7 @@ export function CategoryMenu({ categoryList }) {
         <svg
           className="w-7 h-7"
           viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
         >
           <path
             fill="#000000"

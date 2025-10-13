@@ -119,7 +119,7 @@ function Header() {
               className="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 className="w-3.5 h-3.5 fill-black"
                 viewBox="0 0 320.591 320.591"
               >
@@ -184,7 +184,7 @@ function Header() {
               onClick={() => {
                 setIsSearchVisible(!isSearchVisible);
               }}
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               viewBox="0 0 192.904 192.904"
               width="20px"
               className="cursor-pointer fill-[#ffffff] hover:fill-yellow-400"
@@ -198,7 +198,7 @@ function Header() {
               }}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 width="20px"
                 className="cursor-pointer fill-[#ffffff] hover:fill-yellow-400 inline"
                 viewBox="0 0 64 64"
@@ -222,7 +222,7 @@ function Header() {
               }}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
                 width="20px"
                 height="20px"
                 className="cursor-pointer fill-[#ffffff] hover:fill-yellow-400 inline"
@@ -247,7 +247,7 @@ function Header() {
                 }}
               >
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
@@ -279,7 +279,7 @@ function Header() {
                 <svg
                   className="w-7 h-7"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     fill="#ffffff"
@@ -292,7 +292,7 @@ function Header() {
                 <svg
                   className="w-7 h-7"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="https://www.w3.org/2000/svg"
                 >
                   <path
                     fill="#ffffff"
@@ -365,7 +365,7 @@ function Header() {
       {isSearchVisible ? (
         <div className="absolute bg-black bg-opacity-95 flex px-4 py-3 border float-start text-white border-gray-300 rounded-lg focus-within:border-yellow-500 overflow-hidden min-w-[80%] ms-[10%] font-[sans-serif]">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 192.904 192.904"
             width="18px"
             className="fill-gray-300 mr-3"

@@ -50,7 +50,7 @@ function MyOrders() {
         <svg
           className="w-20 h-20 text-white dark:text-white"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="24"
           height="24"
           fill="none"
@@ -174,7 +174,7 @@ function MyOrders() {
             disabled={currentPage === 1}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300"
               viewBox="0 0 55.753 55.753"
             >
@@ -209,7 +209,7 @@ function MyOrders() {
             disabled={currentPage === totalPages}
           >
             <svg
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               className="w-3 fill-gray-300 rotate-180"
               viewBox="0 0 55.753 55.753"
             >
