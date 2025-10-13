@@ -26,8 +26,8 @@ function Home() {
   const { productType, setProductType } = useContext(ProductTypeContext);
   const { category, setCategory } = useContext(CategoryContext);
   const [categoryList, setCategoryList] = useState([]);
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   const navigate = useNavigate();
 
@@ -394,7 +394,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   {/* Default Image */}
                   <div className="w-full relative group">
                     {/* Default Image */}
-                    <div className="opacity-100 transition-opacity hover:ease-in-out duration-300 ease-in-out group-hover:opacity-0">
+                    {/* <div className="opacity-100 transition-opacity hover:ease-in-out duration-300 ease-in-out group-hover:opacity-0">
                       {productImageList
                         .filter(
                           (productImageItem) =>
@@ -408,6 +408,25 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             className="w-full object-cover object-top aspect-[230/307] rounded-md"
                           />
                         ))}
+                    </div> */}
+                    <div className="opacity-100 transition-opacity hover:ease-in-out duration-300 ease-in-out group-hover:opacity-0">
+                      {productImageList
+                        .filter(
+                          (productImageItem) =>
+                            productImageItem.productId === productItem._id
+                        )
+                        .map((productImageItem, productImageItemIndex) => {
+                          console.log(`https://${myIp}/uploads/${productImageItem.imagePath[0]}`);
+
+                          return (
+                            <img
+                              key={productImageItemIndex}
+                              src={`https://${myIp}/uploads/${productImageItem.imagePath[0]}`}
+                              alt={`Product ${productImageItemIndex + 1}`}
+                              className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            />
+                          );
+                        })}
                     </div>
 
                     {/* Overlay Digital Banner (Only for Digital Products) */}
