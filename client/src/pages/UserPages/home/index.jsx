@@ -416,12 +416,23 @@ function Home() {
                             productImageItem.productId === productItem._id
                         )
                         .map((productImageItem, productImageItemIndex) => {
-                          console.log(`https://${myIp}/${productImageItem.imagePath[0].replace(/\\/g, "/")}`);
+                          const imagePath =
+                            productImageItem.imagePath &&
+                            productImageItem.imagePath[0]
+                              ? productImageItem.imagePath[0].replace(
+                                  /\\/g,
+                                  "/"
+                                )
+                              : null;
+
+                          console.log(`https://${myIp}/uploads/${imagePath}`);
+
+                          if (!imagePath) return null; // Skip if no image
 
                           return (
                             <img
                               key={productImageItemIndex}
-                              src={`https://${myIp}/${productImageItem.imagePath[0].replace(/\\/g, "/")}`}
+                              src={`https://${myIp}/uploads/${imagePath}`}
                               alt={`Product ${productImageItemIndex + 1}`}
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
