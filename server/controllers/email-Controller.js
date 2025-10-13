@@ -6,6 +6,8 @@ const Email = async (req, res) => {
     req.body;
 
   try {
+    console.log("Brevo API Key:", process.env.BREVO_API_KEY);
+
     let defaultClient = brevo.ApiClient.instance;
 
     let apiKey = defaultClient.authentications["api-key"];
