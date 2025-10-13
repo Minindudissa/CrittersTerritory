@@ -425,14 +425,14 @@ function Home() {
                                 )
                               : null;
 
-                          console.log(`https://${myIp}/uploads/${imagePath}`);
+                          console.log(`https://${myIp}/${imagePath}`);
 
                           if (!imagePath) return null; // Skip if no image
 
                           return (
                             <img
                               key={productImageItemIndex}
-                              src={`https://${myIp}/uploads/${imagePath}`}
+                              src={`https://${myIp}/${imagePath}`}
                               alt={`Product ${productImageItemIndex + 1}`}
                               className="w-full object-cover object-top aspect-[230/307] rounded-md"
                             />
