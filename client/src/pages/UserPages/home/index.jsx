@@ -26,8 +26,8 @@ function Home() {
   const { productType, setProductType } = useContext(ProductTypeContext);
   const { category, setCategory } = useContext(CategoryContext);
   const [categoryList, setCategoryList] = useState([]);
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   const navigate = useNavigate();
 
@@ -400,14 +400,22 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           (productImageItem) =>
                             productImageItem.productId === productItem._id
                         )
-                        .map((productImageItem, productImageItemIndex) => (
-                          <img
-                            key={productImageItemIndex}
-                            src={`https://${myIp}/${productImageItem.imagePath[0]}`}
-                            alt="Product 1"
-                            className="w-full object-cover object-top aspect-[230/307] rounded-md"
-                          />
-                        ))}
+                        .map((productImageItem, productImageItemIndex) => {
+                          const imageSrc =
+                            `http://${myIp}/${productImageItem.imagePath[0]}`.replace(
+                              /\\/g,
+                              "/"
+                            );
+                          console.log("Fixed Image SRC:", imageSrc); // ✅ logs clean URL
+                          return (
+                            <img
+                              key={productImageItemIndex}
+                              src={imageSrc}
+                              alt="Product 1"
+                              className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            />
+                          );
+                        })}
                     </div>
 
                     {/* Overlay Digital Banner (Only for Digital Products) */}
