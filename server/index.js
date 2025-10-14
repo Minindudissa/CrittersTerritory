@@ -66,7 +66,7 @@ app.use("/api/shipping", shippingRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/stripeCoupon", stripeCouponRouter);
 
-app.use("/uploads", express.static("uploads"));
+app.use("/Uploads", express.static(path.join(__dirname, "Uploads")));
 
 app.use("/api", (req, res) => {
   res.status(200).json({
