@@ -402,7 +402,7 @@ function Home() {
                         )
                         .map((productImageItem, productImageItemIndex) => {
                           const imageSrc =
-                            `https://${myIp}/${productImageItem.imagePath[0]}`.replace(
+                            `https://www.crittersterritory.com:5000/${productImageItem.imagePath[0]}`.replace(
                               /\\/g,
                               "/"
                             );
