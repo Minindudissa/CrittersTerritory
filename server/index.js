@@ -34,7 +34,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://www.crittersterritory.com", // frontend URL
+    origin: "https://crittersterritory.com", // frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
     credentials: true // if using cookies/auth
   })
