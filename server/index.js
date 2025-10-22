@@ -32,6 +32,28 @@ const stripeCouponRouter = require("./routes/stripeCoupon-routes");
 require("./database");
 const app = express();
 
+// ======== ADD CORS MIDDLEWARE HERE ========
+app.use(cors({
+  origin: "https://crittersterritory.com",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
+
+// OR if you prefer the manual approach, use this instead:
+/*
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://crittersterritory.com');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Origin, Accept');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+*/
+
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} - Origin: ${req.headers.origin}`);
   next();
@@ -40,30 +62,12 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Your routes
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/pageTopBanner", pageTopBannerRouter);
-app.use("/api/newsLetter", newsLetterRouter);
-app.use("/api/email", emailRouter);
-app.use("/api/promoCode", promoCodeRouter);
-app.use("/api/voucher", voucherRouter);
-app.use("/api/promotion", promotionRouter);
-app.use("/api/gender", genderRouter);
-app.use("/api/country", countryRouter);
-app.use("/api/address", addressRouter);
-app.use("/api/category", categoryRouter);
-app.use("/api/size", sizeRouter);
-app.use("/api/color", colorRouter);
-app.use("/api/product", productRouter);
-app.use("/api/productImage", productImageRouter);
-app.use("/api/review", reviewRouter);
-app.use("/api/wishlist", wishlistRouter);
-app.use("/api/cart", cartRouter);
-app.use("/api/payment", MakePaymentRouter);
-app.use("/api/coupon", StripeCouponRouter);
-app.use("/api/shipping", shippingRouter);
-app.use("/api/order", orderRouter);
-app.use("/api/stripeCoupon", stripeCouponRouter);
+// ... rest of your routes
 
 app.use("/Uploads", express.static(path.join(__dirname, "Uploads")));
 
@@ -72,4 +76,5 @@ app.use("/api", (req, res) => {
     message: "Hello Express",
   });
 });
+
 app.listen(5000, () => console.log("App is now Running at Port 5000"));
