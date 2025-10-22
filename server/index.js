@@ -32,11 +32,59 @@ const stripeCouponRouter = require("./routes/stripeCoupon-routes");
 require("./database");
 const app = express();
 
-// REMOVED all CORS middleware - nginx will handle CORS
+// ======== ADDED: Header handling middleware to prevent hanging ========
+app.use((req, res, next) => {
+  // Set default Content-Type for POST requests without headers
+  if (req.method === 'POST' && !req.headers['content-type']) {
+    req.headers['content-type'] = 'application/json';
+  }
+  
+  // Log incoming requests for debugging
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Content-Type: ${req.headers['content-type'] || 'none'}`);
+  
+  next();
+});
+
+// ======== ADDED: Enhanced body parser with timeout protection ========
+app.use(express.json({ 
+  limit: '50mb',
+  verify: (req, res, buf) => {
+    // Handle empty bodies gracefully
+    if (buf && buf.length === 0) {
+      req.body = {};
+    }
+  }
+}));
+
+app.use(express.urlencoded({ 
+  limit: '50mb', 
+  extended: true,
+  verify: (req, res, buf) => {
+    // Handle empty bodies gracefully
+    if (buf && buf.length === 0) {
+      req.body = {};
+    }
+  }
+}));
+
+// ======== ADDED: Request timeout middleware ========
+app.use((req, res, next) => {
+  // Set response timeout (30 seconds)
+  res.setTimeout(30000, () => {
+    console.log(`Response timeout for: ${req.method} ${req.url}`);
+    if (!res.headersSent) {
+      res.status(504).json({ 
+        success: false, 
+        message: 'Request timeout' 
+      });
+    }
+  });
+  next();
+});
 
 app.use(cookieParser());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Your routes
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/pageTopBanner", pageTopBannerRouter);
@@ -69,4 +117,5 @@ app.use("/api", (req, res) => {
     message: "Hello Express",
   });
 });
+
 app.listen(5000, () => console.log("App is now Running at Port 5000"));
