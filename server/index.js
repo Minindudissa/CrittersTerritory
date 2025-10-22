@@ -37,14 +37,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(
-  cors({
-    origin: ["https://crittersterritory.com", "https://www.crittersterritory.com", "http://localhost:3000"], // frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
-    credentials: true // if using cookies/auth
-  })
-);
-
 app.use(cookieParser());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
