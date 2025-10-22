@@ -6,61 +6,59 @@ export const UserAuthContext = createContext(null);
 
 function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const verifyUserCookie = async () => {
-      const data = await callUserAuthApi();
+      try {
+        setLoading(true);
+        const data = await callUserAuthApi();
 
-      if (data?.userInfo) {
-        setUser(data?.userInfo);
-      }
+        if (data?.success && data?.userInfo) {
+          setUser(data.userInfo);
+          
+          // If user is authenticated and trying to access login/register, redirect to home
+          if (location.pathname === "/auth/login" || location.pathname === "/auth/register") {
+            setTimeout(() => navigate("/"), 0);
+          }
+        } else {
+          setUser(null);
+          
+          // User profile paths that require authentication
+          const userProfilePaths = [
+            "/user-profile/my-profile",
+            "/user-profile/my-orders", 
+            "/user-profile/settings",
+            "/shipping-details",
+          ];
 
-      const userProfilePaths = [
-        "/user-profile/my-profile",
-        "/user-profile/my-orders",
-        "/user-profile/settings",
-        "/shipping-details",
-      ];
-
-      // If the user is not authenticated, check if they are trying to access the user profile pages
-      if (!data?.success) {
-        // If trying to access profile pages, redirect to login
-        if (userProfilePaths.includes(location.pathname)) {
-          console.log(
-            "Unauthorized access to profile page. Redirecting to login..."
-          );
-
-          // Use setTimeout to delay redirection and ensure it happens
-          setTimeout(() => {
-            navigate("/auth/login"); // Redirect to login if trying to access a profile page
-          }, 0);
+          // If not authenticated and trying to access protected routes, redirect to login
+          if (userProfilePaths.includes(location.pathname)) {
+            setTimeout(() => navigate("/auth/login"), 0);
+          }
         }
-      } else {
-        // If the user is authenticated, check if they are trying to access the login or register pages
-        if (
-          location.pathname === "/auth/login" ||
-          location.pathname === "/auth/register"
-        ) {
-          console.log(
-            "User is already authenticated. Redirecting to home page..."
-          );
-
-          // Use setTimeout to delay redirection and ensure it happens
-          setTimeout(() => {
-            navigate("/"); // Redirect to home page if already authenticated
-          }, 0);
-        }
+      } catch (error) {
+        console.error("User auth verification failed:", error);
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
     };
 
-    // Check and handle the logic when component is mounted or pathname changes
     verifyUserCookie();
-  }, [navigate, location.pathname]); // Ensure this runs when the pathname changes
+  }, [navigate, location.pathname]);
+
+  const value = {
+    user,
+    setUser,
+    loading,
+    isAuthenticated: !!user,
+  };
 
   return (
-    <UserAuthContext.Provider value={{ user, setUser }}>
+    <UserAuthContext.Provider value={value}>
       {children}
     </UserAuthContext.Provider>
   );
