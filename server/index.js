@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
@@ -34,16 +34,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://crittersterritory.com",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    origin: "https://crittersterritory.com", // frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
+    credentials: true // if using cookies/auth
   })
 );
 
 app.use(cookieParser());
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/pageTopBanner", pageTopBannerRouter);
