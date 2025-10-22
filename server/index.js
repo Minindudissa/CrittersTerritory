@@ -1,7 +1,7 @@
 require('dotenv').config();
 const path = require("path");
 const express = require("express");
-const cors = require("cors");
+// REMOVED cors import since we're handling it in nginx
 
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/user-routes");
@@ -32,34 +32,11 @@ const stripeCouponRouter = require("./routes/stripeCoupon-routes");
 require("./database");
 const app = express();
 
-// Add this at the TOP of your middleware (before routes)
-app.use((req, res, next) => {
-  const allowedOrigin = 'https://crittersterritory.com';
-  
-  // Set CORS headers
-  res.header('Access-Control-Allow-Origin', allowedOrigin);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Origin, Accept');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  
-  next();
-});
-
-app.use(
-  cors({
-    origin: "https://crittersterritory.com", // frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
-    credentials: true // if using cookies/auth
-  })
-);
+// REMOVED all CORS middleware - nginx will handle CORS
 
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/pageTopBanner", pageTopBannerRouter);
