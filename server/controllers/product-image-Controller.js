@@ -54,7 +54,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage }).array("file", 10); // Allow up to 10 files
+const upload = multer({
+  storage,
+  limits: { fileSize: 50 * 1024 * 1024 },
+}).array("file", 10); // Allow up to 10 files
 
 const createProductImage = async (req, res) => {
   deleteContent = true;
