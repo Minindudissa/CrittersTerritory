@@ -3,24 +3,6 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
-// Add this at the TOP of your middleware (before routes)
-app.use((req, res, next) => {
-  const allowedOrigin = 'https://crittersterritory.com';
-  
-  // Set CORS headers
-  res.header('Access-Control-Allow-Origin', allowedOrigin);
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Origin, Accept');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  
-  next();
-});
-
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/user-routes");
 const pageTopBannerRouter = require("./routes/pageTopBanner-routes");
@@ -49,6 +31,24 @@ const stripeCouponRouter = require("./routes/stripeCoupon-routes");
 
 require("./database");
 const app = express();
+
+// Add this at the TOP of your middleware (before routes)
+app.use((req, res, next) => {
+  const allowedOrigin = 'https://crittersterritory.com';
+  
+  // Set CORS headers
+  res.header('Access-Control-Allow-Origin', allowedOrigin);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Origin, Accept');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
 app.use(
   cors({
