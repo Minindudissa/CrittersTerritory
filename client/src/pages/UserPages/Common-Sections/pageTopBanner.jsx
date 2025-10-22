@@ -24,7 +24,7 @@ function PageTopBanner() {
 
   return isLoading ? null : (
     <div className="flex w-full h-fit fix">
-      {getData.bannerStatus ? (
+      {getData?.bannerStatus ? (
         <div
           style={{ backgroundColor: getData.color }}
           className=" w-full h-8 flex items-center text-center max-md:flex-col gap-6 text-black px-6 py-0 rounded font-[sans-serif]"
