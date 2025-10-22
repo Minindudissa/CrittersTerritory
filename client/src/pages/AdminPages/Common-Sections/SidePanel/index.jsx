@@ -8,7 +8,6 @@ function SidePanel() {
   const navigate = useNavigate();
 
   async function handleLogout() {
-    console.log("hi");
 
     const logoutResponse = await logoutAdmin();
 
