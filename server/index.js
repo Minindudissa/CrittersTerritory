@@ -32,9 +32,14 @@ const stripeCouponRouter = require("./routes/stripeCoupon-routes");
 require("./database");
 const app = express();
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path} - Origin: ${req.headers.origin}`);
+  next();
+});
+
 app.use(
   cors({
-    origin: "https://crittersterritory.com", // frontend URL
+    origin: ["https://crittersterritory.com", "https://www.crittersterritory.com", "http://localhost:3000"], // frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
     credentials: true // if using cookies/auth
   })
