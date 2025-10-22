@@ -57,9 +57,7 @@ function AdminLogIn() {
             emailContent: emailContent,
             replyToEmail: "crittersterritory@gmail.com",
             replyToName: "Critters Territory",
-          });
-          console.log(sendEmailResponse);
-          
+          });          
 
           if (sendEmailResponse?.success) {
             navigate("../../admin", { replace: true })
