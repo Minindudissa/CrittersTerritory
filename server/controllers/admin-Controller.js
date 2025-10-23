@@ -92,7 +92,7 @@ const registerAdmin = async (req, res, next) => {
       if (newlyCreatedAdmin) {
         const token = generateToken(newlyCreatedAdmin?._id);
 
-        res.cookie("token", token, {
+        res.cookie("adminToken", token, {
           withCredentials: true,
           httpOnly: false,
         });
@@ -259,7 +259,7 @@ const loginAdmin = async (req, res, next) => {
     }
 
     const token = generateToken(getAdmin?._id);
-    res.cookie("token", token, {
+    res.cookie("adminToken", token, {
       withCredentials: true,
       httpOnly: false,
     });
@@ -279,7 +279,7 @@ const loginAdmin = async (req, res, next) => {
 };
 
 const logoutAdmin = async (req, res) => {
-  res.cookie("token", "", {
+  res.cookie("adminToken", "", {
     withCredentials: true,
     httpOnly: false,
   });
@@ -337,7 +337,7 @@ const changeAdminPassword = async (req, res, next) => {
         { new: true } // Return the updated document
       );
       const token = generateToken(updatedAdmin?._id);
-      res.cookie("token", token, {
+      res.cookie("adminToken", token, {
         withCredentials: true,
         httpOnly: false,
       });

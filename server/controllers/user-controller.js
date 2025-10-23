@@ -99,7 +99,7 @@ const registerUser = async (req, res, next) => {
       if (newlyCreatedUser) {
         const token = generateToken(newlyCreatedUser?._id);
 
-        res.cookie("token", token, {
+        res.cookie("userToken", token, {
           withCredentials: true,
           httpOnly: false,
         });
@@ -293,7 +293,7 @@ const loginUser = async (req, res, next) => {
     }
 
     const token = generateToken(getUser?._id);
-    res.cookie("token", token, {
+    res.cookie("userToken", token, {
       withCredentials: true,
       httpOnly: false,
     });
@@ -314,7 +314,7 @@ const loginUser = async (req, res, next) => {
 };
 
 const logoutUser = async (req, res) => {
-  res.cookie("token", "", {
+  res.cookie("userToken", "", {
     withCredentials: true,
     httpOnly: false,
   });
@@ -369,7 +369,7 @@ const changeUserPassword = async (req, res, next) => {
         { new: true } // Return the updated document
       );
       const token = generateToken(updatedUser?._id);
-      res.cookie("token", token, {
+      res.cookie("userToken", token, {
         withCredentials: true,
         httpOnly: false,
       });
