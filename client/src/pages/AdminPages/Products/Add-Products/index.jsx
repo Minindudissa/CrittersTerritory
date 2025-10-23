@@ -367,8 +367,9 @@ function AddProducts() {
                 formData.append("file", Images[i].file);
               }
 
-              const createProductImageResponse =
-                await productImageCreate(formData);
+              const createProductImageResponse = await productImageCreate(
+                formData
+              );
 
               if (createProductImageResponse) {
                 setSuccessMsg(createProductImageResponse?.message);
@@ -482,12 +483,16 @@ function AddProducts() {
               formData.append("file", Images[i].file);
             }
 
-            const createProductImageResponse =
-              await productImageCreate(formData);
+            const createProductImageResponse = await productImageCreate(
+              formData
+            );
 
             if (createProductImageResponse) {
               setSuccessMsg(createProductImageResponse?.message);
               setErrorMessage(null);
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000);
             } else {
               setSuccessMsg(null);
               setErrorMessage(createProductImageResponse?.message);
@@ -502,7 +507,6 @@ function AddProducts() {
     setTimeout(() => {
       setSuccessMsg(null);
       setErrorMsg(null);
-      window.location.reload();
     }, 3000);
   }
 
@@ -725,7 +729,11 @@ function AddProducts() {
                           <div className=" w-full flex flex-row justify-between flex-wrap">
                             {colorList.map((colorItem, colorIndex) => (
                               <div
-                                className={` flex flex-row items-center gap-1 mb-2 ${colorItem.status === 0 ? "pointer-events-none opacity-25" : ""} `}
+                                className={` flex flex-row items-center gap-1 mb-2 ${
+                                  colorItem.status === 0
+                                    ? "pointer-events-none opacity-25"
+                                    : ""
+                                } `}
                                 key={colorIndex}
                               >
                                 <input
@@ -765,7 +773,11 @@ function AddProducts() {
                           <div className=" w-full flex flex-row justify-between flex-wrap">
                             {sizeList?.map((sizeItem, sizeIndex) => (
                               <div
-                                className={` flex flex-row items-center gap-1 mb-2 ${sizeItem.status === 0 ? "pointer-events-none opacity-50" : ""} `}
+                                className={` flex flex-row items-center gap-1 mb-2 ${
+                                  sizeItem.status === 0
+                                    ? "pointer-events-none opacity-50"
+                                    : ""
+                                } `}
                                 key={sizeIndex}
                               >
                                 <input
@@ -920,8 +932,9 @@ function AddProducts() {
                                           ...combinations,
                                         ];
                                         if (
-                                          (updatedCombinations[index].status =
-                                            1)
+                                          (updatedCombinations[
+                                            index
+                                          ].status = 1)
                                         ) {
                                           updatedCombinations[index].status = 0;
                                           setCombinations(updatedCombinations);
@@ -1025,7 +1038,11 @@ function AddProducts() {
               </span>
               <div className=" w-full flex flex-row justify-evenly gap-4">
                 <div
-                  className={`w-full ${productType === "Physical" && variations.length > 0 ? "pointer-events-none opacity-40" : ""}`}
+                  className={`w-full ${
+                    productType === "Physical" && variations.length > 0
+                      ? "pointer-events-none opacity-40"
+                      : ""
+                  }`}
                 >
                   <label className="text-gray-200 text-sm mb-1 block">
                     Base Price
@@ -1188,7 +1205,11 @@ function AddProducts() {
                         <p className="font-medium">{file.file.name}</p>
                         <div className="w-full bg-gray-200 rounded-full h-4 mt-2">
                           <div
-                            className={`h-4 ${imageUploadProgress[file.id] === 100 ? "bg-yellow-400" : "bg-yellow-400"} rounded-full transition-all duration-300 ease-in-out`}
+                            className={`h-4 ${
+                              imageUploadProgress[file.id] === 100
+                                ? "bg-yellow-400"
+                                : "bg-yellow-400"
+                            } rounded-full transition-all duration-300 ease-in-out`}
                             style={{
                               width: `${imageUploadProgress[file.id] || 0}%`,
                             }}
