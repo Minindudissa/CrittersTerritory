@@ -45,55 +45,48 @@ function Profile() {
       setIsLoading(true);
       try {
         if (admin) {
-          // Set admin-related fields
           setFirstName(admin.firstName || "");
           setLastName(admin.lastName || "");
           setEmail(admin.email || "");
           setGender(admin.genderId || "0");
           setMobile(admin.mobile || "");
 
-          // Fetch address data with enhanced error handling
-          console.log("Fetching address for admin ID:", admin._id);
           const addressResponse = await searchAddress({ userId: admin._id });
-          console.log("Full address response:", addressResponse);
 
           if (addressResponse?.success) {
             let addressData = addressResponse.data;
             
-            // Handle different response structures
             if (Array.isArray(addressData)) {
-              // If response is an array, take the first address
               addressData = addressData[0] || {};
-              console.log("Address data is array, using first item:", addressData);
-            } else if (addressResponse.addressList && Array.isArray(addressResponse.addressList)) {
-              // If response has addressList array
-              addressData = addressResponse.addressList[0] || {};
-              console.log("Using addressList array:", addressData);
-            } else if (addressResponse.data && typeof addressResponse.data === 'object') {
-              // If data is an object
-              addressData = addressResponse.data;
-              console.log("Using data object:", addressData);
             }
 
-            // Set address fields with fallbacks for different property names
-            setAddressLine1(addressData.line1 || addressData.addressLine1 || addressData.address1 || "");
-            setAddressLine2(addressData.line2 || addressData.addressLine2 || addressData.address2 || "");
+            setAddressLine1(addressData.line1 || "");
+            setAddressLine2(addressData.line2 || "");
             setCity(addressData.city || "");
-            setProvince(addressData.province || addressData.state || addressData.region || "");
-            setPostalCode(addressData.postalCode || addressData.zipCode || addressData.zip || "");
-            setCountry(addressData.countryId || addressData.country || "0");
+            setProvince(addressData.province || "");
+            setPostalCode(addressData.postalCode || "");
 
-            console.log("Final address state set:", {
-              addressLine1: addressData.line1 || addressData.addressLine1 || addressData.address1,
-              addressLine2: addressData.line2 || addressData.addressLine2 || addressData.address2,
-              city: addressData.city,
-              province: addressData.province || addressData.state || addressData.region,
-              postalCode: addressData.postalCode || addressData.zipCode || addressData.zip,
-              country: addressData.countryId || addressData.country
-            });
+            const countryIdFromDB = addressData.countryId;
+
+            const countryResponse = await countrySearch({ searchData: {} });
+            if (countryResponse?.success) {
+              setCounrtyList(countryResponse.countryList || []);
+              
+              if (countryIdFromDB) {
+                const countryExists = countryResponse.countryList.some(
+                  country => country._id === countryIdFromDB || country._id.toString() === countryIdFromDB.toString()
+                );
+                
+                if (countryExists) {
+                  setCountry(countryIdFromDB);
+                } else {
+                  setCountry("0");
+                }
+              } else {
+                setCountry("0");
+              }
+            }
           } else {
-            console.log("No address data found or error in response:", addressResponse);
-            // Initialize empty address fields if no address found
             setAddressLine1("");
             setAddressLine2("");
             setCity("");
@@ -103,21 +96,12 @@ function Profile() {
           }
         }
 
-        // Fetch gender and country lists in parallel
-        const [genderResponse, countryResponse] = await Promise.all([
-          genderSearch({ searchData: {} }),
-          countrySearch({ searchData: {} }),
-        ]);
-
+        const genderResponse = await genderSearch({ searchData: {} });
         if (genderResponse?.success) {
           setGenderList(genderResponse.genderList || []);
         }
-        if (countryResponse?.success) {
-          setCounrtyList(countryResponse.countryList || []);
-        }
+
       } catch (error) {
-        console.error("Error during initialization:", error);
-        // Initialize empty fields on error
         setAddressLine1("");
         setAddressLine2("");
         setCity("");
@@ -135,7 +119,6 @@ function Profile() {
   async function handleAdminDataOnSubmit(event) {
     event.preventDefault();
 
-    // Required fields validation
     const requiredFields = [
       { value: firstName, message: "Please fill your First Name" },
       { value: lastName, message: "Please fill your Last Name" },
@@ -159,7 +142,6 @@ function Profile() {
       }
     }
 
-    // Validate mobile number
     if (!/^\+?[1-9]\d{1,14}$/.test(mobile)) {
       return showTemporaryMessage(
         setErrorMsg1,
@@ -170,7 +152,6 @@ function Profile() {
     setIsLoading(true);
 
     try {
-      // Update personal data
       const updateAdminResponse = await UpdateAdmin({
         email,
         updateData: { firstName, lastName, genderId: gender, mobile },
@@ -181,7 +162,6 @@ function Profile() {
           setSuccessMsg1,
           "Successfully Updated Personal Data"
         );
-        // Update admin context if needed
         if (setAdmin) {
           setAdmin(prev => prev ? { ...prev, firstName, lastName, genderId: gender, mobile } : prev);
         }
@@ -194,7 +174,6 @@ function Profile() {
         showTemporaryMessage(setErrorMsg1, errorMsg);
       }
 
-      // Update address data
       const createAddressResponse = await createUpdateAddress({
         line1: addressLine1,
         line2: addressLine2,
@@ -211,7 +190,6 @@ function Profile() {
         showTemporaryMessage(setErrorMsg1, createAddressResponse?.message || "Failed to update address");
       }
     } catch (error) {
-      console.error("Error updating admin data:", error);
       showTemporaryMessage(setErrorMsg1, "An unexpected error occurred.");
     } finally {
       setIsLoading(false);
@@ -226,7 +204,6 @@ function Profile() {
   async function handleChangePasswordOnSubmit(event) {
     event.preventDefault();
     
-    // Validation
     if (!currentPassword) {
       setSuccessMsg2(null);
       setErrorMsg2("Please Enter Your Current Password");
@@ -268,7 +245,6 @@ function Profile() {
       if (adminPasswordChangeResponse?.success) {
         setErrorMsg2(null);
         setSuccessMsg2("Password successfully Updated");
-        // Clear password fields
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
@@ -283,7 +259,6 @@ function Profile() {
         }
       }
     } catch (error) {
-      console.error("Error changing password:", error);
       setSuccessMsg2(null);
       setErrorMsg2("An unexpected error occurred while changing password");
     }
