@@ -37,8 +37,9 @@ function Profile() {
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState(0);
+  const [country, setCountry] = useState("0");
   const [countryList, setCounrtyList] = useState([]);
+
   useEffect(() => {
     async function initialize() {
       setIsLoading(true);
@@ -51,16 +52,54 @@ function Profile() {
           setGender(admin.genderId || "0");
           setMobile(admin.mobile || "");
 
-          // Fetch address data
+          // Fetch address data with enhanced error handling
+          console.log("Fetching address for admin ID:", admin._id);
           const addressResponse = await searchAddress({ userId: admin._id });
+          console.log("Full address response:", addressResponse);
+
           if (addressResponse?.success) {
-            const data = addressResponse.data;
-            setAddressLine1(data.line1 || "");
-            setAddressLine2(data.line2 || "");
-            setCity(data.city || "");
-            setProvince(data.province || "");
-            setPostalCode(data.postalCode || "");
-            setCountry(data.countryId || 0);
+            let addressData = addressResponse.data;
+            
+            // Handle different response structures
+            if (Array.isArray(addressData)) {
+              // If response is an array, take the first address
+              addressData = addressData[0] || {};
+              console.log("Address data is array, using first item:", addressData);
+            } else if (addressResponse.addressList && Array.isArray(addressResponse.addressList)) {
+              // If response has addressList array
+              addressData = addressResponse.addressList[0] || {};
+              console.log("Using addressList array:", addressData);
+            } else if (addressResponse.data && typeof addressResponse.data === 'object') {
+              // If data is an object
+              addressData = addressResponse.data;
+              console.log("Using data object:", addressData);
+            }
+
+            // Set address fields with fallbacks for different property names
+            setAddressLine1(addressData.line1 || addressData.addressLine1 || addressData.address1 || "");
+            setAddressLine2(addressData.line2 || addressData.addressLine2 || addressData.address2 || "");
+            setCity(addressData.city || "");
+            setProvince(addressData.province || addressData.state || addressData.region || "");
+            setPostalCode(addressData.postalCode || addressData.zipCode || addressData.zip || "");
+            setCountry(addressData.countryId || addressData.country || "0");
+
+            console.log("Final address state set:", {
+              addressLine1: addressData.line1 || addressData.addressLine1 || addressData.address1,
+              addressLine2: addressData.line2 || addressData.addressLine2 || addressData.address2,
+              city: addressData.city,
+              province: addressData.province || addressData.state || addressData.region,
+              postalCode: addressData.postalCode || addressData.zipCode || addressData.zip,
+              country: addressData.countryId || addressData.country
+            });
+          } else {
+            console.log("No address data found or error in response:", addressResponse);
+            // Initialize empty address fields if no address found
+            setAddressLine1("");
+            setAddressLine2("");
+            setCity("");
+            setProvince("");
+            setPostalCode("");
+            setCountry("0");
           }
         }
 
@@ -70,10 +109,21 @@ function Profile() {
           countrySearch({ searchData: {} }),
         ]);
 
-        if (genderResponse) setGenderList(genderResponse.genderList);
-        if (countryResponse) setCounrtyList(countryResponse.countryList);
+        if (genderResponse?.success) {
+          setGenderList(genderResponse.genderList || []);
+        }
+        if (countryResponse?.success) {
+          setCounrtyList(countryResponse.countryList || []);
+        }
       } catch (error) {
         console.error("Error during initialization:", error);
+        // Initialize empty fields on error
+        setAddressLine1("");
+        setAddressLine2("");
+        setCity("");
+        setProvince("");
+        setPostalCode("");
+        setCountry("0");
       } finally {
         setIsLoading(false);
       }
@@ -131,12 +181,16 @@ function Profile() {
           setSuccessMsg1,
           "Successfully Updated Personal Data"
         );
+        // Update admin context if needed
+        if (setAdmin) {
+          setAdmin(prev => prev ? { ...prev, firstName, lastName, genderId: gender, mobile } : prev);
+        }
       } else {
-        const errorMsg = updateAdminResponse?.message.includes(
+        const errorMsg = updateAdminResponse?.message?.includes(
           "fails to match the required"
         )
           ? "Please Enter a Valid Mobile Number"
-          : updateAdminResponse?.message;
+          : updateAdminResponse?.message || "Failed to update personal data";
         showTemporaryMessage(setErrorMsg1, errorMsg);
       }
 
@@ -154,7 +208,7 @@ function Profile() {
       if (createAddressResponse?.success) {
         showTemporaryMessage(setSuccessMsg1, "Successfully Updated Address");
       } else {
-        showTemporaryMessage(setErrorMsg1, createAddressResponse?.message);
+        showTemporaryMessage(setErrorMsg1, createAddressResponse?.message || "Failed to update address");
       }
     } catch (error) {
       console.error("Error updating admin data:", error);
@@ -171,47 +225,67 @@ function Profile() {
 
   async function handleChangePasswordOnSubmit(event) {
     event.preventDefault();
-    if (currentPassword === "") {
+    
+    // Validation
+    if (!currentPassword) {
       setSuccessMsg2(null);
       setErrorMsg2("Please Enter Your Current Password");
-    } else if (newPassword === "") {
+      return;
+    }
+    
+    if (!newPassword) {
       setSuccessMsg2(null);
       setErrorMsg2("Please Enter a new Password");
-    } else if (confirmPassword === "") {
+      return;
+    }
+    
+    if (!confirmPassword) {
       setSuccessMsg2(null);
       setErrorMsg2("Confirm the Password You've Entered");
-    } else {
+      return;
+    }
+
+    if (newPassword.length < 8) {
+      setSuccessMsg2(null);
+      setErrorMsg2("New password should contain at least 8 characters");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setSuccessMsg2(null);
+      setErrorMsg2("New password and confirm password don't match");
+      return;
+    }
+
+    try {
       const adminPasswordChangeResponse = await adminPasswordChange({
         email,
         currentPassword,
         newPassword,
         confirmPassword,
       });
-      if (
-        adminPasswordChangeResponse?.message.includes(
-          '"newPassword" length must be at least 8'
-        )
-      ) {
-        setSuccessMsg2(null);
-        setErrorMsg2("New password should contain atlease 8 characters");
-      } else if (
-        adminPasswordChangeResponse?.message.includes("Incorrect Password")
-      ) {
-        setSuccessMsg2(null);
-        setErrorMsg2("Invalid Current Password");
-      } else if (
-        adminPasswordChangeResponse?.message.includes("Password doesn't match")
-      ) {
-        setSuccessMsg2(null);
-        setErrorMsg2(adminPasswordChangeResponse?.message);
-      } else {
+
+      if (adminPasswordChangeResponse?.success) {
         setErrorMsg2(null);
         setSuccessMsg2("Password successfully Updated");
-        setTimeout(() => {
-          setErrorMsg2(null);
-          setSuccessMsg2(null);
-        }, 3000);
+        // Clear password fields
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else {
+        setSuccessMsg2(null);
+        if (adminPasswordChangeResponse?.message?.includes("Incorrect Password")) {
+          setErrorMsg2("Invalid Current Password");
+        } else if (adminPasswordChangeResponse?.message?.includes("Password doesn't match")) {
+          setErrorMsg2(adminPasswordChangeResponse.message);
+        } else {
+          setErrorMsg2(adminPasswordChangeResponse?.message || "Failed to change password");
+        }
       }
+    } catch (error) {
+      console.error("Error changing password:", error);
+      setSuccessMsg2(null);
+      setErrorMsg2("An unexpected error occurred while changing password");
     }
   }
 
@@ -219,7 +293,7 @@ function Profile() {
     <PageLoading />
   ) : (
     <div className=" w-full flex flex-col justify-center items-center">
-      {admin.firstName === "Admin" ? (
+      {admin?.firstName === "Admin" ? (
         <div className=" w-full font-semibold py-2 text-center text-white bg-red-600">
           Fill all the details below to start working as a new Admin {">>>>"}
         </div>
@@ -552,6 +626,7 @@ function Profile() {
               }}
               name="currentPassword"
               type={isCurrentPasswordVisible ? "text" : "password"}
+              value={currentPassword}
               required
               className="text-white bg-white outline-none focus:outline-transparent bg-opacity-15 placeholder:text-gray-300 border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md"
               placeholder="Enter Current password"
@@ -587,6 +662,7 @@ function Profile() {
               }}
               name="newPassword"
               type={isNewPasswordVisible ? "text" : "password"}
+              value={newPassword}
               required
               className="text-white bg-white outline-none focus:outline-transparent bg-opacity-15 placeholder:text-gray-300 border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md"
               placeholder="Enter New password"
@@ -622,6 +698,7 @@ function Profile() {
               }}
               name="confirmPassword"
               type={isConfirmPasswordVisible ? "text" : "password"}
+              value={confirmPassword}
               required
               className="text-white bg-white outline-none focus:outline-transparent bg-opacity-15 placeholder:text-gray-300 border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md"
               placeholder="Confirm password"
