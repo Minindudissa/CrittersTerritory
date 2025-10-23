@@ -55,7 +55,7 @@ function ChangePageTopBanner() {
         setSuccessMsg(null);
         setErrorMsg(null);
         setData(data?.response?.banner[0]);
-        setIsEnabled(data?.response?.banner[0].bannerStatus);
+        setIsEnabled(data?.response?.banner[0]?.bannerStatus);
       } catch (error) {
         setSuccessMsg(null);
         setErrorMsg(error.message);
@@ -69,7 +69,7 @@ function ChangePageTopBanner() {
     <form onSubmit={handleOnSubmit}>
       <div className="w-full h-full flex flex-wrap justify-center p-5 gap-4">
         <h1 className="text-white font-semibold h-fit">Page Top Banner</h1>
-        {getData.bannerStatus ? (
+        {getData?.bannerStatus ? (
           <div
             style={{ backgroundColor: getData.color }}
             className=" w-full h-10 flex items-center text-center max-md:flex-col gap-6 text-black px-6 py-0 rounded font-[sans-serif]"
