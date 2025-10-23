@@ -14,8 +14,8 @@ function Products() {
   const [totalPages, setTotalPages] = useState(1);
   const [expandedProduct, setExpandedProduct] = useState(null);
   const [searchTerm, setsearchTerm] = useState("");
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -140,27 +140,29 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       )}
                     </td>
                     <td className="p-3 border border-gray-700 text-center">
-                      {Math.min(
-                        ...(product.variations?.map((variation) =>
-                          parseFloat(variation.price)
-                        ) || [])
-                      ) === Infinity
-                        ? "----"
-                        : "$" +
-                          Math.min(
+                      {product.productType === "Physical"
+                        ? Math.min(
                             ...(product.variations?.map((variation) =>
                               parseFloat(variation.price)
                             ) || [])
-                          ).toFixed(2) +
-                          "+"}
+                          ) === Infinity
+                          ? "----"
+                          : "$" +
+                            Math.min(
+                              ...(product.variations?.map((variation) =>
+                                parseFloat(variation.price)
+                              ) || [])
+                            ).toFixed(2) +
+                            "+"
+                        : product.basePrice.toFixed(2)}
                     </td>
                     <td className="p-3 border border-gray-700 text-center">
                       {product.stock === null
                         ? product.stockTypeId === "2"
                           ? "Unlimited Stock"
                           : product.productType === "Physical"
-                            ? "Vary Stock Count"
-                            : null
+                          ? "Vary Stock Count"
+                          : null
                         : product.stock}
                     </td>
                     <td className="p-3 border border-gray-700 text-center">
@@ -168,7 +170,9 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     </td>
                     <td className="p-3 border border-gray-700 text-center">
                       <span
-                        className={`px-2 py-1 rounded text-white ${product.status === "1" ? "bg-green-500" : "bg-red-500"}`}
+                        className={`px-2 py-1 rounded text-white ${
+                          product.status === "1" ? "bg-green-500" : "bg-red-500"
+                        }`}
                       >
                         {product.status === "1" ? "Active" : "Inactive"}
                       </span>
