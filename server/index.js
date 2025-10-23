@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 // REMOVED cors import since we're handling it in nginx
@@ -35,37 +35,45 @@ const app = express();
 // ======== ADDED: Header handling middleware to prevent hanging ========
 app.use((req, res, next) => {
   // Set default Content-Type for POST requests without headers
-  if (req.method === 'POST' && !req.headers['content-type']) {
-    req.headers['content-type'] = 'application/json';
+  if (req.method === "POST" && !req.headers["content-type"]) {
+    req.headers["content-type"] = "application/json";
   }
-  
+
   // Log incoming requests for debugging
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Content-Type: ${req.headers['content-type'] || 'none'}`);
-  
+  console.log(
+    `${new Date().toISOString()} - ${req.method} ${req.path} - Content-Type: ${
+      req.headers["content-type"] || "none"
+    }`
+  );
+
   next();
 });
 
 // ======== ADDED: Enhanced body parser with timeout protection ========
-app.use(express.json({ 
-  limit: '50mb',
-  verify: (req, res, buf) => {
-    // Handle empty bodies gracefully
-    if (buf && buf.length === 0) {
-      req.body = {};
-    }
-  }
-}));
+app.use(
+  express.json({
+    limit: "50mb",
+    verify: (req, res, buf) => {
+      // Handle empty bodies gracefully
+      if (buf && buf.length === 0) {
+        req.body = {};
+      }
+    },
+  })
+);
 
-app.use(express.urlencoded({ 
-  limit: '50mb', 
-  extended: true,
-  verify: (req, res, buf) => {
-    // Handle empty bodies gracefully
-    if (buf && buf.length === 0) {
-      req.body = {};
-    }
-  }
-}));
+app.use(
+  express.urlencoded({
+    limit: "50mb",
+    extended: true,
+    verify: (req, res, buf) => {
+      // Handle empty bodies gracefully
+      if (buf && buf.length === 0) {
+        req.body = {};
+      }
+    },
+  })
+);
 
 // ======== ADDED: Request timeout middleware ========
 app.use((req, res, next) => {
@@ -73,9 +81,9 @@ app.use((req, res, next) => {
   res.setTimeout(30000, () => {
     console.log(`Response timeout for: ${req.method} ${req.url}`);
     if (!res.headersSent) {
-      res.status(504).json({ 
-        success: false, 
-        message: 'Request timeout' 
+      res.status(504).json({
+        success: false,
+        message: "Request timeout",
       });
     }
   });
