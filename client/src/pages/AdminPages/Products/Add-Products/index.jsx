@@ -502,6 +502,7 @@ function AddProducts() {
     setTimeout(() => {
       setSuccessMsg(null);
       setErrorMsg(null);
+      window.location.reload();
     }, 3000);
   }
 
