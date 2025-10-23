@@ -405,7 +405,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             key={productImageItemIndex}
                             src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                             alt="Product 1"
-                            className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            className="w-full object-cover object-top aspect-square rounded-md"
                           />
                         ))}
                     </div>
@@ -429,7 +429,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             key={productImageItemIndex}
                             src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                             alt="Product 2"
-                            className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            className="w-full object-cover object-top aspect-square rounded-md"
                           />
                         ) : null
                     )}
@@ -743,7 +743,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             key={productImageItemIndex}
                             src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                             alt="Product 1"
-                            className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            className="w-full object-cover object-top aspect-square rounded-md"
                           />
                         ))}
                     </div>
@@ -767,7 +767,7 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             key={productImageItemIndex}
                             src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                             alt="Product 2"
-                            className="w-full object-cover object-top aspect-[230/307] rounded-md"
+                            className="w-full object-cover object-top aspect-square rounded-md"
                           />
                         ) : null
                     )}
