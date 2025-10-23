@@ -192,9 +192,6 @@ function Products() {
                               {product.description.length > 100 ? (
                                 <>
                                   {product.description.slice(0, 100)}...
-                                  <a className="text-blue-400 ml-2">
-                                    Show More
-                                  </a>
                                 </>
                               ) : (
                                 product.description
