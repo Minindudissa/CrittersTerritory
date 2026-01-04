@@ -21,9 +21,11 @@ function MyProfile() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(false);
+  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] =
+    useState(false);
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg1, setErrorMsg1] = useState(null);
   const [successMsg1, setSuccessMsg1] = useState(null);
@@ -50,7 +52,9 @@ function MyProfile() {
         setMobile(user?.mobile || "");
 
         // Fetch address
-        const searchAddressResponse = await searchAddress({ userId: user?._id });
+        const searchAddressResponse = await searchAddress({
+          userId: user?._id,
+        });
         if (searchAddressResponse?.success) {
           setAddressData(searchAddressResponse);
           setAddressLine1(searchAddressResponse?.data.line1 || "");
@@ -321,9 +325,15 @@ function MyProfile() {
                   }}
                   className="text-white bg-opacity-15 outline-none focus:outline-none focus:outline-transparent cursor-pointer bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md focus:border-yellow-500 placeholder:text-gray-300"
                 >
-                  <option value={"0"} className=" bg-gray-800">Select Gender</option>
+                  <option value={"0"} className=" bg-gray-800">
+                    Select Gender
+                  </option>
                   {genderList.map((genderItem, index) => (
-                    <option key={index} value={genderItem._id} className=" bg-gray-800">
+                    <option
+                      key={index}
+                      value={genderItem._id}
+                      className=" bg-gray-800"
+                    >
                       {genderItem.gender}
                     </option>
                   ))}
@@ -360,7 +370,9 @@ function MyProfile() {
         </div>
       </div>
       <div className=" w-full lg:w-2/3 p-4 flex flex-col">
-        <h2 className=" my-4 font-semibold text-xl text-white">Change Password</h2>
+        <h2 className=" my-4 font-semibold text-xl text-white">
+          Change Password
+        </h2>
         {successMsg2 ? (
           <div
             className=" w-5/6 p-4 mb-6 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -493,7 +505,9 @@ function MyProfile() {
         </div>
       </div>
       <div className=" w-full lg:w-2/3 p-4 flex flex-col">
-        <h2 className=" my-4 font-semibold text-xl text-white">Address Details</h2>
+        <h2 className=" my-4 font-semibold text-xl text-white">
+          Address Details
+        </h2>
         {successMsg3 ? (
           <div
             className=" w-5/6 p-4 mb-6 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -627,15 +641,21 @@ function MyProfile() {
               <select
                 id="country"
                 name="country"
-              value={country}
+                value={country}
                 onChange={(event) => {
                   setCountry(event.target.value);
                 }}
                 className="text-white bg-opacity-15 outline-none focus:outline-none focus:outline-transparent cursor-pointer bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md focus:border-yellow-500 placeholder:text-gray-300"
               >
-                <option value={"0"} className=" bg-gray-800">Select Country</option>
+                <option value={"0"} className=" bg-gray-800">
+                  Select Country
+                </option>
                 {countryList.map((countryItem, index) => (
-                  <option key={index} value={countryItem._id} className=" bg-gray-800">
+                  <option
+                    key={index}
+                    value={countryItem._id}
+                    className=" bg-gray-800"
+                  >
                     {countryItem.name}
                   </option>
                 ))}

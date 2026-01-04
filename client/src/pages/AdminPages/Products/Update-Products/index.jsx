@@ -189,6 +189,8 @@ function UpdateProducts() {
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
           className="w-16 h-16 object-cover rounded"
+          loading="lazy"
+          decoding="async"
         />
       );
     } else if (file.file.type === "image/gif") {
@@ -197,6 +199,8 @@ function UpdateProducts() {
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
           className="w-16 h-16 object-cover rounded"
+          loading="lazy"
+          decoding="async"
         />
       );
     } else if (file.file.type.startsWith("video/")) {
@@ -346,8 +350,8 @@ function UpdateProducts() {
                 variationItem === "Color"
                   ? setColorVariationIndex(Index)
                   : variationItem === "Size"
-                    ? setSizeVariationIndex(Index)
-                    : null
+                  ? setSizeVariationIndex(Index)
+                  : null
             );
           }
 
@@ -479,8 +483,9 @@ function UpdateProducts() {
                 formData.append("file", Images[i].file);
               }
 
-              const updateProductImageResponse =
-                await productImageUpdate(formData);
+              const updateProductImageResponse = await productImageUpdate(
+                formData
+              );
 
               if (updateProductImageResponse) {
                 setSuccessMsg(updateProductImageResponse?.message);
@@ -598,8 +603,9 @@ function UpdateProducts() {
               formData.append("file", Images[i].file);
             }
 
-            const updateProductImageResponse =
-              await productImageUpdate(formData);
+            const updateProductImageResponse = await productImageUpdate(
+              formData
+            );
 
             if (updateProductImageResponse) {
               setSuccessMsg(updateProductImageResponse?.message);
@@ -1026,8 +1032,9 @@ function UpdateProducts() {
                                           ...combinations,
                                         ];
                                         if (
-                                          (updatedCombinations[index].status =
-                                            1)
+                                          (updatedCombinations[
+                                            index
+                                          ].status = 1)
                                         ) {
                                           updatedCombinations[index].status = 0;
                                           setCombinations(updatedCombinations);
@@ -1135,7 +1142,11 @@ function UpdateProducts() {
                 </span>
                 <div className=" w-full flex flex-row justify-evenly gap-4">
                   <div
-                    className={`w-full ${productType === "Physical" && variations.length > 0 ? "pointer-events-none opacity-40" : ""}`}
+                    className={`w-full ${
+                      productType === "Physical" && variations.length > 0
+                        ? "pointer-events-none opacity-40"
+                        : ""
+                    }`}
                   >
                     <label className="text-gray-200 text-sm mb-1 block">
                       Base Price
@@ -1304,7 +1315,11 @@ function UpdateProducts() {
                         <p className="font-medium">{file.file.name}</p>
                         <div className="w-full bg-gray-200 rounded-full h-4 mt-2">
                           <div
-                            className={`h-4 ${imageUploadProgress[file.id] === 100 ? "bg-yellow-400" : "bg-yellow-400"} rounded-full transition-all duration-300 ease-in-out`}
+                            className={`h-4 ${
+                              imageUploadProgress[file.id] === 100
+                                ? "bg-yellow-400"
+                                : "bg-yellow-400"
+                            } rounded-full transition-all duration-300 ease-in-out`}
                             style={{
                               width: `${imageUploadProgress[file.id] || 0}%`,
                             }}

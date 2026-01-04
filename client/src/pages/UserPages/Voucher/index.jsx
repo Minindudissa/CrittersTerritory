@@ -18,8 +18,8 @@ function Voucher() {
 
   const [addVoucherCode, setAddVoucherCode] = useState("");
   const [addVoucherValue, setAddVoucherValue] = useState("");
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -255,8 +255,10 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
       <div className="w-full mt-4">
         <div className="w-full flex flex-col md:flex-row justify-start items-start gap-4">
           <img
-            src="/assets/Site_Images/Gift Voucher/Gift_Voucher.png"
+            src="/assets/Site_Images/Gift Voucher/Gift_Voucher.webp"
             className="aspect-square h-auto w-10/12 md:w-6/12 lg:w-1/3 2xl:w-1/4 rounded-lg"
+            loading="lazy"
+            decoding="async"
           />
           <div className=" w-10/12 md:w-6/12 lg:w-4/12 xl:w-3/12">
             <div className=" w-full flex md:flex-row flex-col justify-center items-center gap-4 mb-4">

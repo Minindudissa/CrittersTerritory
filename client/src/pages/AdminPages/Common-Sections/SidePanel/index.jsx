@@ -8,7 +8,6 @@ function SidePanel() {
   const navigate = useNavigate();
 
   async function handleLogout() {
-
     const logoutResponse = await logoutAdmin();
 
     if (logoutResponse?.success) {
@@ -25,7 +24,9 @@ function SidePanel() {
            transition-transform duration-300 ease-in-out`}
     >
       <button
-        className={`bg-transparent border-none focus:outline-none my-2 ${isMenuVisible ? "ms-36" : "ms-0"}  close px-3`}
+        className={`bg-transparent border-none focus:outline-none my-2 ${
+          isMenuVisible ? "ms-36" : "ms-0"
+        }  close px-3`}
         onClick={() => {
           setIsMenuVisible(!isMenuVisible);
         }}
@@ -63,9 +64,11 @@ function SidePanel() {
             onClick={() => navigate("../admin/dashboard", { replace: true })}
           >
             <img
-              src="/assets/Logo/Critters Territory Logo.png"
+              src="/assets/Logo/Critters Territory Logo.webp"
               alt="logo"
               className="w-[70px]"
+              loading="lazy"
+              decoding="async"
             />
           </a>
         ) : null}
@@ -81,7 +84,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 512 512"
               >
                 <path
@@ -102,7 +107,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 512 512"
               >
                 <path
@@ -123,7 +130,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 512 512"
               >
                 <path
@@ -144,7 +153,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 24 24"
               >
                 <path
@@ -175,7 +186,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 512.003 512.003"
               >
                 <path
@@ -200,7 +213,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 511.877 511.877"
               >
                 <path
@@ -219,7 +234,9 @@ function SidePanel() {
               className="text-black cursor-pointer hover:text-yellow-500 text-[15px] flex items-center hover:bg-black hover:bg-opacity-40 rounded px-4 py-3 transition-all"
             >
               <svg
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 xmlns="https://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -246,7 +263,9 @@ function SidePanel() {
               <svg
                 xmlns="https://www.w3.org/2000/svg"
                 fill="currentColor"
-                className={` ${isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null}`}
+                className={` ${
+                  isMenuVisible ? "mr-4 w-[18px] h-[18px]" : null
+                }`}
                 viewBox="0 0 6.35 6.35"
               >
                 <path

@@ -26,8 +26,8 @@ function Home() {
   const { productType, setProductType } = useContext(ProductTypeContext);
   const { category, setCategory } = useContext(CategoryContext);
   const [categoryList, setCategoryList] = useState([]);
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   const navigate = useNavigate();
 
@@ -113,9 +113,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             className=" h-[12rem] sm:h-[16rem] md:h-[14rem] lg:h-[8.5rem] xl:h-[11rem] 2xl:h-[14rem] w-full rounded-md cursor-pointer ease-in-out duration-300 hover:scale-[102%]"
           >
             <img
-              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_1.jpg`}
+              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_1.webp`}
               alt="Promotional Images 1"
               className="w-full h-full object-cover object-top aspect-square rounded-md"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div
@@ -123,9 +125,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             className=" h-[12rem] sm:h-[16rem] md:h-[14rem] lg:h-[8.5rem] xl:h-[11rem] 2xl:h-[14rem] w-full rounded-md cursor-pointer ease-in-out duration-300 hover:scale-[102%]"
           >
             <img
-              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_2.jpg`}
+              src={`/assets/Site_Images/PromotionalImages/PromotionalImages_2.webp`}
               alt="Promotional Images 2"
               className="w-full h-full object-cover object-top aspect-square rounded-md"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -357,9 +361,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   {/* Default Image */}
                   <div className="opacity-100 transition-opacity hover:ease-in-out duration-300 ease-in-out">
                     <img
-                      src={`/assets/Site_Images/CategoryImages/${categoryItem.name}_1.jpg`}
+                      src={`/assets/Site_Images/CategoryImages/${categoryItem.name}_1.webp`}
                       alt={`Category Image ${Index + 1}`}
                       className="w-full object-cover object-top aspect-square rounded-md"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -406,6 +412,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                             alt="Product 1"
                             className="w-full object-cover object-top aspect-square rounded-md"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ))}
                     </div>
@@ -413,9 +421,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     {/* Overlay Digital Banner (Only for Digital Products) */}
                     {productItem.productType === "Digital" && (
                       <img
-                        src="/assets/Digital_Banner/Digital_Banner.png"
+                        src="/assets/Digital_Banner/Digital_Banner.webp"
                         className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                         alt="Digital banner"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                   </div>
@@ -430,6 +440,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                             alt="Product 2"
                             className="w-full object-cover object-top aspect-square rounded-md"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : null
                     )}
@@ -744,6 +756,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                             alt="Product 1"
                             className="w-full object-cover object-top aspect-square rounded-md"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ))}
                     </div>
@@ -751,9 +765,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     {/* Overlay Digital Banner (Only for Digital Products) */}
                     {productItem.productType === "Digital" && (
                       <img
-                        src="/assets/Digital_Banner/Digital_Banner.png"
+                        src="/assets/Digital_Banner/Digital_Banner.webp"
                         className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                         alt="Digital banner"
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                   </div>
@@ -768,6 +784,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                             alt="Product 2"
                             className="w-full object-cover object-top aspect-square rounded-md"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : null
                     )}

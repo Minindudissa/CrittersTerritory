@@ -39,7 +39,7 @@ function CartListing() {
     useState(true);
   const [isAllDigital, setIsAllDigital] = useState(true);
 
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -227,9 +227,13 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
       searchData: { _id: productId },
     });
 
-    if (productSearchResponse?.success) {    
-      
-      if (cartQuantity < productSearchResponse.productList[0].variations.find(variationItem => variationItem.combination === variant)?.quantity) {
+    if (productSearchResponse?.success) {
+      if (
+        cartQuantity <
+        productSearchResponse.productList[0].variations.find(
+          (variationItem) => variationItem.combination === variant
+        )?.quantity
+      ) {
         setQuantity((prev) => prev + 1);
         if (user === null) {
           const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
@@ -242,7 +246,9 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
             if (isSameProduct) {
               const newQuantity = Math.min(
                 cartItem.quantity + 1,
-                productSearchResponse.productList[0].variations.find(variationItem => variationItem.combination === variant)?.quantity
+                productSearchResponse.productList[0].variations.find(
+                  (variationItem) => variationItem.combination === variant
+                )?.quantity
               );
               return { ...cartItem, quantity: newQuantity };
             }
@@ -261,7 +267,9 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
               if (isSameProduct) {
                 const newQuantity = Math.min(
                   cartItem.quantity + 1,
-                  productSearchResponse.productList[0].variations.find(variationItem => variationItem.combination === variant)?.quantity
+                  productSearchResponse.productList[0].variations.find(
+                    (variationItem) => variationItem.combination === variant
+                  )?.quantity
                 );
                 const cartUpdateResponse = await cartUpdate({
                   productId,
@@ -656,6 +664,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                               className="z-[2] w-80 h-80 object-contain" // Doubled size
                               src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                               alt=""
+                              loading="lazy"
+                              decoding="async"
                             />
                           ) : null;
                         })()}
@@ -665,9 +675,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             productItem._id === cartItem.productId
                         )?.productType === "Digital" ? (
                           <img
-                            src="/assets/Digital_Banner/Digital_Banner.png"
+                            src="/assets/Digital_Banner/Digital_Banner.webp"
                             className="absolute z-[3] w-80 h-80 object-contain" // Fit to image size
                             alt="Digital banner"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : null}
                       </div>
@@ -1679,8 +1691,10 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
                 <div className="mt-4 flex flex-wrap justify-center gap-4 rounded-md bg-yellow-400">
                   <img
-                    src="/assets/Site_Images/PaymentMethodImage/stripe-payments.png"
+                    src="/assets/Site_Images/PaymentMethodImage/stripe-payments.webp"
                     className="w-full object-contain rounded-md"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

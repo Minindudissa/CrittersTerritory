@@ -30,8 +30,8 @@ function AllOrders() {
   const [countryList, setCountryList] = useState([]);
   const [tracking, setTracking] = useState(null);
   const [searchTerm, setsearchTerm] = useState("");
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -206,9 +206,33 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   <p>Here are your shipment details:</p>
                   <div style="margin: 20px 0; padding: 10px 20px; background-color: #f7f7f7; border-radius: 6px; font-size: 16px;">
                     Order ID: <strong>${orderId}</strong><br>
-                    Courier Service: <strong>${orderSearchResponse?.OrderList[0]?.shippingType === "Standard Shipping" ? "SL POST" : orderSearchResponse?.OrderList[0]?.shippingType === "Expedited Shipping" ? "DHL" : null}</strong><br>
+                    Courier Service: <strong>${
+                      orderSearchResponse?.OrderList[0]?.shippingType ===
+                      "Standard Shipping"
+                        ? "SL POST"
+                        : orderSearchResponse?.OrderList[0]?.shippingType ===
+                          "Expedited Shipping"
+                        ? "DHL"
+                        : null
+                    }</strong><br>
                     Tracking Number: <strong>${tracking}</strong><br>
-                    Track Your Shipment: <a href="${orderSearchResponse?.OrderList[0]?.shippingType === "Standard Shipping" ? "https://parcelsapp.com/en/tracking" : orderSearchResponse?.OrderList[0]?.shippingType === "Expedited Shipping" ? "https://www.dhl.com/lk-en/home/tracking.html" : null}" style="color: #007bff; text-decoration: none;" target="_blank">${orderSearchResponse?.OrderList[0]?.shippingType === "Standard Shipping" ? "Universal Tracking" : orderSearchResponse?.OrderList[0]?.shippingType === "Expedited Shipping" ? "DHL Tracking" : null}</a>
+                    Track Your Shipment: <a href="${
+                      orderSearchResponse?.OrderList[0]?.shippingType ===
+                      "Standard Shipping"
+                        ? "https://parcelsapp.com/en/tracking"
+                        : orderSearchResponse?.OrderList[0]?.shippingType ===
+                          "Expedited Shipping"
+                        ? "https://www.dhl.com/lk-en/home/tracking.html"
+                        : null
+                    }" style="color: #007bff; text-decoration: none;" target="_blank">${
+                orderSearchResponse?.OrderList[0]?.shippingType ===
+                "Standard Shipping"
+                  ? "Universal Tracking"
+                  : orderSearchResponse?.OrderList[0]?.shippingType ===
+                    "Expedited Shipping"
+                  ? "DHL Tracking"
+                  : null
+              }</a>
                   </div>
                   <p>Please allow some time for the tracking information to update on the courier’s website.</p>
                   <p>If you have any questions or concerns regarding your delivery, feel free to contact us.</p>
@@ -261,14 +285,14 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
               courier === "Standard Shipping"
                 ? "SL POST"
                 : courier === "Expedited Shipping"
-                  ? "DHL"
-                  : "Unknown Courier";
+                ? "DHL"
+                : "Unknown Courier";
             const trackingUrl =
               courier === "Standard Shipping"
                 ? `https://www.17track.net/en/track?nums=${tracking}`
                 : courier === "Expedited Shipping"
-                  ? `https://www.dhl.com/global-en/home/tracking.html?tracking-id=${tracking}`
-                  : "#";
+                ? `https://www.dhl.com/global-en/home/tracking.html?tracking-id=${tracking}`
+                : "#";
 
             const emailContent = `
               <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden;">
@@ -288,7 +312,15 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   <p>Here are your delivery details for reference:</p>
                   <div style="margin: 20px 0; padding: 10px 20px; background-color: #f7f7f7; border-radius: 6px; font-size: 16px;">
                     Order ID: <strong>${orderId}</strong><br>
-                    Courier Service: <strong>${orderSearchResponse?.OrderList[0]?.shippingType === "Standard Shipping" ? "SL POST" : orderSearchResponse?.OrderList[0]?.shippingType === "Expedited Shipping" ? "DHL" : null}</strong><br>
+                    Courier Service: <strong>${
+                      orderSearchResponse?.OrderList[0]?.shippingType ===
+                      "Standard Shipping"
+                        ? "SL POST"
+                        : orderSearchResponse?.OrderList[0]?.shippingType ===
+                          "Expedited Shipping"
+                        ? "DHL"
+                        : null
+                    }</strong><br>
                   </div>
                   <p>If everything arrived in good condition, we’d love to hear your feedback or see a review!</p>
                   <p>If you have any concerns or didn’t receive your order as expected, please contact us right away and we’ll be happy to assist you.</p>
@@ -402,6 +434,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           <div className="w-full relative group">
                             <div>
                               <img
+                                loading="lazy"
+                                decoding="async"
                                 key={orderItem.productId}
                                 src={`https://${myIp}/${
                                   imageList.find(
@@ -414,7 +448,9 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             </div>
                             {item.productType === "Digital" && (
                               <img
-                                src="/assets/Digital_Banner/Digital_Banner.png"
+                                loading="lazy"
+                                decoding="async"
+                                src="/assets/Digital_Banner/Digital_Banner.webp"
                                 className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                                 alt="Digital banner"
                               />

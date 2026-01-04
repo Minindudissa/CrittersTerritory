@@ -160,7 +160,7 @@ function Invoice() {
         <img
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
-          className="w-16 h-16 object-cover rounded"
+          className="w-16 h-16 object-cover rounded" loading="lazy" decoding="async"
         />
       );
     } else if (file.file.type === "image/gif") {
@@ -168,7 +168,7 @@ function Invoice() {
         <img
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
-          className="w-16 h-16 object-cover rounded"
+          className="w-16 h-16 object-cover rounded" loading="lazy" decoding="async"
         />
       );
     } else if (file.file.type.startsWith("video/")) {
@@ -551,9 +551,9 @@ function Invoice() {
           <div className="flex justify-between">
             <div className=" flex flex-col justify-center items-center">
               <img
-                src="/assets/Logo/Critters Territory Logo.png"
+                src="/assets/Logo/Critters Territory Logo.webp"
                 alt="logo"
-                className="w-[100px]"
+                className="w-[100px]" loading="lazy" decoding="async"
               />
 
               <h1 className=" text-xl md:text-2xl font-semibold text-yellow-600">

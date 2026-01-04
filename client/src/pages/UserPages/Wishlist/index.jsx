@@ -27,8 +27,8 @@ function Wishlist() {
 
   const [successMsg, setSuccessMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   useEffect(() => {
     async function fetchData() {
@@ -513,15 +513,19 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                           className="object-cover z-[2] absolute w-full rounded-t-lg h-96 md:h-full md:rounded-none md:rounded-s-lg"
                           src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                           alt=""
+                          loading="lazy"
+                          decoding="async"
                         />
                       ) : null
                   )}
 
                   {productItem.productType === "Digital" ? (
                     <img
-                      src="/assets/Digital_Banner/Digital_Banner.png"
+                      src="/assets/Digital_Banner/Digital_Banner.webp"
                       className=" relative z-[3] w-full h-fit"
                       alt="Digital banner"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : null}
                 </div>

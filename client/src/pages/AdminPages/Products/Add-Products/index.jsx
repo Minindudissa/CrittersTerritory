@@ -175,6 +175,8 @@ function AddProducts() {
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
           className="w-16 h-16 object-cover rounded"
+          loading="lazy"
+          decoding="async"
         />
       );
     } else if (file.file.type === "image/gif") {
@@ -183,6 +185,8 @@ function AddProducts() {
           src={URL.createObjectURL(file.file)}
           alt={file.file.name}
           className="w-16 h-16 object-cover rounded"
+          loading="lazy"
+          decoding="async"
         />
       );
     } else if (file.file.type.startsWith("video/")) {

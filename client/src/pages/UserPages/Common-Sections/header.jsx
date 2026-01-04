@@ -94,9 +94,11 @@ function Header() {
             className="max-sm:hidden cursor-pointer"
           >
             <img
-              src="/assets/Logo/Critters_Territory.png"
+              src="/assets/Logo/Critters_Territory.webp"
               alt="logo Lettering"
               className="w-48 mt-2"
+              loading="lazy"
+              decoding="async"
             />
           </a>
           <a
@@ -104,9 +106,11 @@ function Header() {
             className="hidden max-sm:block cursor-pointer"
           >
             <img
-              src="/assets/Logo/Critters_Territory.png"
+              src="/assets/Logo/Critters_Territory.webp"
               alt="logo Lettering"
               className="w-48 mt-2"
+              loading="lazy"
+              decoding="async"
             />
           </a>
 
@@ -141,13 +145,19 @@ function Header() {
                     src="https://readymadeui.com/readymadeui.svg"
                     alt="logo"
                     className="w-36"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </a>
               </li>
               <li className="max-lg:border-b max-lg:py-3">
                 <a
                   onClick={() => navigate("../", { replace: true })}
-                  className={`cursor-pointer text-white  text-[15px] font-bold ${location.pathname === "/" ? "text-yellow-400 hover:text-yellow-400" : "text-gray-600 hover:text-yellow-400"}`}
+                  className={`cursor-pointer text-white  text-[15px] font-bold ${
+                    location.pathname === "/"
+                      ? "text-yellow-400 hover:text-yellow-400"
+                      : "text-gray-600 hover:text-yellow-400"
+                  }`}
                 >
                   Home
                 </a>
@@ -155,7 +165,11 @@ function Header() {
               <li className="group max-lg:border-b max-lg:py-3 relative">
                 <a
                   onClick={() => navigate("../shop", { replace: true })}
-                  className={`cursor-pointer  text-white text-[15px] font-bold ${location.pathname === "/shop" ? "text-yellow-400 hover:text-yellow-400" : "text-gray-600 hover:text-yellow-400"}`}
+                  className={`cursor-pointer  text-white text-[15px] font-bold ${
+                    location.pathname === "/shop"
+                      ? "text-yellow-400 hover:text-yellow-400"
+                      : "text-gray-600 hover:text-yellow-400"
+                  }`}
                 >
                   Shop
                 </a>
@@ -163,7 +177,11 @@ function Header() {
               <li className="max-lg:border-b max-lg:py-3">
                 <a
                   onClick={() => navigate("../contact-us", { replace: true })}
-                  className={`cursor-pointer  text-white text-[15px] font-bold ${location.pathname === "/contact-us" ? "text-yellow-400 hover:text-yellow-400" : "text-gray-600 hover:text-yellow-400"}`}
+                  className={`cursor-pointer  text-white text-[15px] font-bold ${
+                    location.pathname === "/contact-us"
+                      ? "text-yellow-400 hover:text-yellow-400"
+                      : "text-gray-600 hover:text-yellow-400"
+                  }`}
                 >
                   Contact Us
                 </a>
@@ -171,7 +189,11 @@ function Header() {
               <li className="max-lg:border-b max-lg:py-3">
                 <a
                   onClick={() => navigate("../about-us", { replace: true })}
-                  className={`cursor-pointer  text-white text-[15px] font-bold ${location.pathname === "/about-us" ? "text-yellow-400 hover:text-yellow-400" : "text-gray-600 hover:text-yellow-400"}`}
+                  className={`cursor-pointer  text-white text-[15px] font-bold ${
+                    location.pathname === "/about-us"
+                      ? "text-yellow-400 hover:text-yellow-400"
+                      : "text-gray-600 hover:text-yellow-400"
+                  }`}
                 >
                   About Us
                 </a>
@@ -312,7 +334,11 @@ function Header() {
             onClick={() => {
               navigate("../");
             }}
-            className={`cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${location.pathname === "/" ? "bg-yellow-400" : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"}`}
+            className={`cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${
+              location.pathname === "/"
+                ? "bg-yellow-400"
+                : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"
+            }`}
           >
             Home
           </div>
@@ -320,7 +346,11 @@ function Header() {
             onClick={() => {
               navigate("../shop");
             }}
-            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${location.pathname.includes("shop") ? "bg-yellow-400" : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"}`}
+            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${
+              location.pathname.includes("shop")
+                ? "bg-yellow-400"
+                : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"
+            }`}
           >
             Shop
           </div>
@@ -328,7 +358,11 @@ function Header() {
             onClick={() => {
               navigate("../contact-us");
             }}
-            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${location.pathname.includes("contact-us") ? "bg-yellow-400" : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"}`}
+            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${
+              location.pathname.includes("contact-us")
+                ? "bg-yellow-400"
+                : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"
+            }`}
           >
             Contact Us
           </div>
@@ -336,7 +370,11 @@ function Header() {
             onClick={() => {
               navigate("../about-us");
             }}
-            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${location.pathname.includes("about-us") ? "bg-yellow-400" : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"}`}
+            className={` cursor-pointer text-lg font-semibold text-center p-1  rounded-sm ${
+              location.pathname.includes("about-us")
+                ? "bg-yellow-400"
+                : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"
+            }`}
           >
             About Us
           </div>
@@ -355,7 +393,11 @@ function Header() {
               onClick={() => {
                 navigate("../user-profile");
               }}
-              className={` cursor-pointer text-lg font-semibold text-center p-1 ${location.pathname.includes("user-profile") ? "bg-yellow-400" : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"}`}
+              className={` cursor-pointer text-lg font-semibold text-center p-1 ${
+                location.pathname.includes("user-profile")
+                  ? "bg-yellow-400"
+                  : "bg-black bg-opacity-30 text-white hover:text-black hover:bg-yellow-400"
+              }`}
             >
               User Profile
             </div>

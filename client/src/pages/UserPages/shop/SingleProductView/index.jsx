@@ -61,7 +61,7 @@ function ProductDetails() {
   const [relatedProductList, setRelatedProductList] = useState([]);
   const [relatedProductImages, setRelatedProductImages] = useState([]);
 
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   const increaseQuantity = () => {
     if (quantity < preferredvariant?.quantity) {
@@ -558,9 +558,9 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                         preferredvariant.quantity
                           ? foundItemInCart.quantity
                           : Number(foundItemInCart.quantity) + quantity >
-                              preferredvariant.quantity
-                            ? preferredvariant.quantity
-                            : Number(foundItemInCart.quantity) + quantity,
+                            preferredvariant.quantity
+                          ? preferredvariant.quantity
+                          : Number(foundItemInCart.quantity) + quantity,
                     }
                   : cartItem
               );
@@ -677,11 +677,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                   preferredvariant.quantity
                     ? usercartSearchResponse.cartList[0].quantity
                     : Number(usercartSearchResponse.cartList[0].quantity) +
-                          quantity >
-                        preferredvariant.quantity
-                      ? preferredvariant.quantity
-                      : Number(usercartSearchResponse.cartList[0].quantity) +
-                        quantity,
+                        quantity >
+                      preferredvariant.quantity
+                    ? preferredvariant.quantity
+                    : Number(usercartSearchResponse.cartList[0].quantity) +
+                      quantity,
               },
             });
 
@@ -752,6 +752,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                     src={`https://${myIp}/${productImagesList[imageIndex]}`}
                     alt="Product1"
                     className="w-full aspect-square"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </div>
@@ -780,6 +782,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       src={`https://${myIp}/${productImageItem}`}
                       onClick={() => setToMainImage(index)}
                       className="w-24 h-24 object-cover cursor-pointer"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ))}
                 </div>
@@ -962,8 +966,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                   return minPrice;
                                 })()
                             : productList.basePrice
-                              ? "$" + productList.basePrice.toFixed(2)
-                              : "Price Unavailable"}
+                            ? "$" + productList.basePrice.toFixed(2)
+                            : "Price Unavailable"}
                         </strike>
                       </p>
                       <p className=" bg-pink-600 py-2 px-3 text-white font-semibold">
@@ -998,14 +1002,20 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             return minPrice;
                           })()
                       : productList.basePrice
-                        ? "$" + productList.basePrice.toFixed(2)
-                        : "Price Unavailable"}
+                      ? "$" + productList.basePrice.toFixed(2)
+                      : "Price Unavailable"}
                   </h4>
                 </div>
               )}
             </div>
             <div
-              className={`${productList.productType === "Digital" ? "invisible" : productList.productType === "Physical" ? "visible" : null}`}
+              className={`${
+                productList.productType === "Digital"
+                  ? "invisible"
+                  : productList.productType === "Physical"
+                  ? "visible"
+                  : null
+              }`}
             >
               <hr className="my-6 border-gray-300" />
               <p className="text-red-500">{errorMsg}</p>
@@ -1242,6 +1252,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                                 src={`https://${myIp}/${RelatedproductImageItem.imagePath[0]}`}
                                 alt="Product 1"
                                 className="w-full object-cover object-top aspect-square rounded-md"
+                                loading="lazy"
+                                decoding="async"
                               />
                             )
                           )}
@@ -1250,9 +1262,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       {/* Overlay Digital Banner (Only for Digital Products) */}
                       {RelatedproductItem.productType === "Digital" && (
                         <img
-                          src="/assets/Digital_Banner/Digital_Banner.png"
+                          src="/assets/Digital_Banner/Digital_Banner.webp"
                           className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                           alt="Digital banner"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </div>
@@ -1271,6 +1285,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                               src={`https://${myIp}/${RelatedproductImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-square rounded-md"
+                              loading="lazy"
+                              decoding="async"
                             />
                           ) : null
                       )}
@@ -1643,10 +1659,10 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       {productList.printerTypeId === "1"
                         ? "FDM Printers"
                         : productList.printerTypeId === "2"
-                          ? "SLA (Resin) Printers"
-                          : productList.printerTypeId === "3"
-                            ? "Both FDM & SLA (Resin) Printers"
-                            : null}
+                        ? "SLA (Resin) Printers"
+                        : productList.printerTypeId === "3"
+                        ? "Both FDM & SLA (Resin) Printers"
+                        : null}
                     </p>
                   </div>
 
@@ -1658,8 +1674,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       {productList.isColorFileAvailableId === "2" || ""
                         ? "No"
                         : productList.isColorFileAvailableId === "1"
-                          ? "Yes"
-                          : null}
+                        ? "Yes"
+                        : null}
                     </p>
                   </div>
 
@@ -1790,6 +1806,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                             alt="Review Image"
                             className="w-full h-fit"
                             key={Index}
+                            loading="lazy"
+                            decoding="async"
                           />
                         ))}
                       </div>

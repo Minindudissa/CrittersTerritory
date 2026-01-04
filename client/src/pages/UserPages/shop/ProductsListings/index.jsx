@@ -27,7 +27,7 @@ function Listings() {
   const { productType, setProductType } = useContext(ProductTypeContext);
   const { category, setCategory } = useContext(CategoryContext);
 
-const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
+  const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
 
   const navigate = useNavigate();
 
@@ -99,8 +99,10 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
         >
           <img
             className="object-cover w-36 rounded-s-lg h-auto"
-            src="/assets/Site_Images/Gift Voucher/Gift_Voucher_Banner.png"
+            src="/assets/Site_Images/Gift Voucher/Gift_Voucher_Banner.webp"
             alt=""
+            loading="lazy"
+            decoding="async"
           />
           <div className="flex flex-col justify-between p-4 leading-normal">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">
@@ -191,6 +193,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                               src={`https://${myIp}/${productImageItem.imagePath[0]}`}
                               alt="Product 1"
                               className="w-full object-cover object-top aspect-square rounded-md"
+                              loading="lazy"
+                              decoding="async"
                             />
                           ))}
                       </div>
@@ -198,9 +202,11 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                       {/* Overlay Digital Banner (Only for Digital Products) */}
                       {productItem.productType === "Digital" && (
                         <img
-                          src="/assets/Digital_Banner/Digital_Banner.png"
+                          src="/assets/Digital_Banner/Digital_Banner.webp"
                           className="absolute top-0 left-0 w-full h-full z-10 opacity-100 transition-opacity duration-300 ease-in-out"
                           alt="Digital banner"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </div>
@@ -215,6 +221,8 @@ const myIp = import.meta.env.VITE_VPS_IP_ADDRESS;
                               src={`https://${myIp}/${productImageItem.imagePath[1]}`} // Show second image on hover
                               alt="Product 2"
                               className="w-full object-cover object-top aspect-square rounded-md"
+                              loading="lazy"
+                              decoding="async"
                             />
                           ) : null
                       )}

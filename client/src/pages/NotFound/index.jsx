@@ -11,6 +11,8 @@ function NotFound() {
         className=" xl:w-10/12 LG:w-1/2 w-full "
         src="/assets/NotFoundPage/DALL·E 2025-01-16 15.07.10 - A whimsical and friendly 404 error page design featuring a cute 3D-style robot sitting on a floating island in space, surrounded by stars. Beside the .webp"
         alt=""
+        loading="lazy"
+        decoding="async"
       />
       <div className=" w-full">
         <Footer />

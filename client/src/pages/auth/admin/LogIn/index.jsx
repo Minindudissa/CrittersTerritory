@@ -11,7 +11,6 @@ function AdminLogIn() {
   const navigate = useNavigate();
 
   async function handleOnClick() {
-    
     const adminLoginResponse = await loginAdmin({ email, password });
     if (adminLoginResponse?.message === '"email" is not allowed to be empty') {
       setErrorMsg("Please Enter Your Email");
@@ -24,7 +23,6 @@ function AdminLogIn() {
     ) {
       setErrorMsg("Please Enter Your Password");
     } else {
-      
       if (adminLoginResponse?.success) {
         setErrorMsg(null);
         setSuccessMsg(adminLoginResponse?.message);
@@ -57,10 +55,10 @@ function AdminLogIn() {
             emailContent: emailContent,
             replyToEmail: "crittersterritory@gmail.com",
             replyToName: "Critters Territory",
-          });          
+          });
 
           if (sendEmailResponse?.success) {
-            navigate("../../admin", { replace: true })
+            navigate("../../admin", { replace: true });
           } else {
             setErrorMsg(sendEmailResponse?.message);
           }
@@ -106,7 +104,7 @@ function AdminLogIn() {
 
           // Email
         } else {
-          setErrorMsg(adminLoginResponse?.message)
+          setErrorMsg(adminLoginResponse?.message);
         }
         setTimeout(() => {
           setErrorMsg(null);
@@ -123,6 +121,8 @@ function AdminLogIn() {
             src="/assets/Site_Images/DALL·E 2025-01-27 16.22.49 - A detailed and vibrant image of various 3D-printed models arranged neatly on a table. The models include a flexible red dragon with wings, a flexi mar.webp"
             className="w-full h-full object-cover"
             alt="login-image"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

@@ -3,9 +3,7 @@ function Checkout() {
     <div className="font-[sans-serif] bg-white p-4 lg:max-w-7xl max-w-xl mx-auto">
       <div className="grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 max-lg:order-1">
-          <div className="flex items-start">
-            
-          </div>
+          <div className="flex items-start"></div>
 
           <form className="mt-16 max-w-lg">
             <h2 className="text-2xl font-extrabold text-gray-800">
@@ -19,21 +17,30 @@ function Checkout() {
                   className="w-5 h-5 cursor-pointer"
                   id="card"
                 />
-                <label htmlFor="card" className="ml-4 flex gap-2 cursor-pointer">
+                <label
+                  htmlFor="card"
+                  className="ml-4 flex gap-2 cursor-pointer"
+                >
                   <img
                     src="https://readymadeui.com/images/visa.webp"
                     className="w-12"
                     alt="card1"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="https://readymadeui.com/images/american-express.webp"
                     className="w-12"
                     alt="card2"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <img
                     src="https://readymadeui.com/images/master.webp"
                     className="w-12"
                     alt="card3"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </label>
               </div>
@@ -44,11 +51,16 @@ function Checkout() {
                   className="w-5 h-5 cursor-pointer"
                   id="paypal"
                 />
-                <label htmlFor="paypal" className="ml-4 flex gap-2 cursor-pointer">
+                <label
+                  htmlFor="paypal"
+                  className="ml-4 flex gap-2 cursor-pointer"
+                >
                   <img
                     src="https://readymadeui.com/images/paypal.webp"
                     className="w-20"
                     alt="paypalCard"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </label>
               </div>
@@ -107,9 +119,7 @@ function Checkout() {
                 />
                 <label htmlFor="remember-me" className="ml-3 block text-sm">
                   I accept the{" "}
-                  <a
-                    className="text-blue-600 font-semibold hover:underline ml-1"
-                  >
+                  <a className="text-blue-600 font-semibold hover:underline ml-1">
                     Terms and Conditions
                   </a>
                 </label>
@@ -144,7 +154,8 @@ function Checkout() {
               Echo Elegance <span className="ml-auto font-bold">$200.00</span>
             </li>
             <li className="flex flex-wrap gap-4 text-sm">
-              VelvetGlide Boots <span className="ml-auto font-bold">$300.00</span>
+              VelvetGlide Boots{" "}
+              <span className="ml-auto font-bold">$300.00</span>
             </li>
             <li className="flex flex-wrap gap-4 text-sm">
               Tax <span className="ml-auto font-bold">$100.00</span>

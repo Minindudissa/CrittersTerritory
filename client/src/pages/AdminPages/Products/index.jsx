@@ -186,13 +186,13 @@ function Products() {
                             src={`https://${myIp}/${productImageList}`}
                             alt={product.name}
                             className="w-32 h-32 object-cover rounded-md"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div>
                             <p className="text-sm text-gray-300">
                               {product.description.length > 100 ? (
-                                <>
-                                  {product.description.slice(0, 100)}...
-                                </>
+                                <>{product.description.slice(0, 100)}...</>
                               ) : (
                                 product.description
                               )}
