@@ -37,12 +37,8 @@ function Invoice() {
   const [rating, setRating] = useState(0);
 
   const allowedImageTypes = [
-    "image/jpeg", // .jpg, .jpeg
-    "image/png", // .png
+    "image/webp", // .webp
     "image/gif", // .gif
-    "video/avi", // .avi
-    "video/mov", // .mov
-    "video/mkv", // .mkv (additional video format)
   ];
 
   const maxImageCount = 2;
@@ -429,7 +425,7 @@ function Invoice() {
                             </span>
                           </p>
                           <p className="text-xs text-gray-500 dark:text-gray-400">
-                            .JPG .PNG .GIF
+                            .WEBP .GIF
                           </p>
                         </div>
                         <input

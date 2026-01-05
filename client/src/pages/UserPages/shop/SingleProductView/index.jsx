@@ -174,7 +174,7 @@ function ProductDetails() {
             return paths.sort((a, b) => {
               const getPriority = (path) => {
                 if (path.endsWith(".gif")) return 1;
-                if (path.endsWith(".jpg")) return 2;
+                if (path.endsWith(".webp")) return 2;
                 return 3; // For other file types
               };
               return getPriority(a) - getPriority(b);

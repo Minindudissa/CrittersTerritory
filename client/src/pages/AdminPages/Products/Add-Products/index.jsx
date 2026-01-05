@@ -51,12 +51,8 @@ function AddProducts() {
   const [quantity, setQuantity] = useState("");
 
   const allowedImageTypes = [
-    "image/jpeg", // .jpg, .jpeg
-    "image/png", // .png
+    "image/webp", // .webp
     "image/gif", // .gif
-    "video/avi", // .avi
-    "video/mov", // .mov
-    "video/mkv", // .mkv (additional video format)
   ];
 
   const maxImageCount = 10;
@@ -1176,7 +1172,7 @@ function AddProducts() {
                     <span className="font-semibold">Click to upload</span>
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    .JPG .PNG .GIF
+                    .WEBP .GIF
                   </p>
                 </div>
                 <input

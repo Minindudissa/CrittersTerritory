@@ -64,13 +64,8 @@ function UpdateProducts() {
   const [quantity, setQuantity] = useState("");
 
   const allowedImageTypes = [
-    "image/jpeg", // .jpg, .jpeg
-    "image/png", // .png
+    "image/webp", // .webp
     "image/gif", // .gif
-    "video/mp4", // .mp4
-    "video/avi", // .avi
-    "video/mov", // .mov
-    "video/mkv", // .mkv (additional video format)
   ];
 
   const maxImageCount = 10;
@@ -1282,7 +1277,7 @@ function UpdateProducts() {
                     <span className="font-semibold">Click to upload</span>
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    .JPG .PNG .GIF .MP4 .AVI .MOV
+                    .WEBP .GIF
                   </p>
                 </div>
                 <input
