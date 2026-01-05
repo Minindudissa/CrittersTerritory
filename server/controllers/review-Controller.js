@@ -110,7 +110,7 @@ const storage = multer.diskStorage({
     }
 
     if (!req.fileIndex) req.fileIndex = 1;
-    const fileName = `${reviewId}_${req.fileIndex}.jpg`; // Always save as .jpg
+    const fileName = `${reviewId}_${req.fileIndex}.webp`; // Always save as .webp
     req.fileIndex++; // Increment for next image
 
     cb(null, fileName);
