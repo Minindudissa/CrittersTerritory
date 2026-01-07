@@ -565,7 +565,7 @@ function CartListing() {
   }
 
   const makePayment = async () => {
-    const stripe = await loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
+    const stripe = await loadStripe("pk_live_51QObE5Fw1jM5sbYxbd1u9MvPUDHCo0L30pBR7Zne0wyt6cdNX1bHawGEw7S3Dxxl4myP1MRddaBWWcy4u37aoBTs00woSA3mk6");
 
     const makePaymentResponse = await fetch(
       `https://${myIp}/api/payment/create-checkout-session`,
