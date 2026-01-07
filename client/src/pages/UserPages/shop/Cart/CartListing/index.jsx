@@ -1,5 +1,5 @@
 import PageLoading from "@/pages/PageLoading";
-const STRIPE_PUBLISHABLE_KEY = import.meta.env.STRIPE_PUBLISHABLE_KEY;
+const STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 import {
   productImageSearch,
   productSearch,
